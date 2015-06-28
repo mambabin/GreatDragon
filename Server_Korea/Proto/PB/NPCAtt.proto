@@ -1,0 +1,54 @@
+import "RoleAtt.proto";
+import "EquipmentInfo.proto";
+import "FuncInfo.proto";
+import "FightInfo.proto";
+
+message PB_NPCAtt{
+
+	enum ColorType{
+		WHITE = 0;
+		GREEN = 1;
+		BLUE = 2;
+		YELLOW = 3;
+		RED = 4;
+	}
+
+	optional int32 id = 1;
+	optional PB_RoleAtt att = 2;
+	optional int32 pic = 3;
+	optional string desc = 4;
+	optional PB_FuncAtt funcAtt = 5;
+	optional int32 dropID = 6;
+	repeated int32 peddleAudio = 7;
+	optional float peddleMaxDistance = 8;
+	optional int32 peddleMinInterval = 9;
+	optional int32 peddleMaxInterval = 10;
+	repeated int32 talkAudio = 11;
+	optional int32 bornTime = 12;
+	optional int32 shockDelay = 13;
+	optional int32 shockTime = 14;
+	optional int32 bornEffect = 15;
+	optional int32 bornEffectTime = 16;
+	optional float specialPercent = 17;
+	optional int32 bearAudio = 18;
+	optional int32 dieAudio = 19;
+	optional ColorType color = 20;
+	optional float hue = 21;
+	repeated PB_EquipAsset equips = 22;
+	optional bool newSpecial = 23;
+	optional int32 type = 24;
+	optional int32 quality = 25;
+	optional int32 level = 26;
+	optional int32 goodsID = 27;
+	optional int32 goodsCount = 28;
+	optional int32 dieEffect = 29;
+	optional int32 Grade = 30;
+}
+
+message PB_AllNPCs{
+	repeated PB_NPCAtt npcs = 1;
+}
+
+message PB_AllPets{
+	repeated PB_NPCAtt pets = 1;
+}

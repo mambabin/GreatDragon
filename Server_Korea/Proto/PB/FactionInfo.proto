@@ -1,0 +1,40 @@
+import "ProfessionInfo.proto";
+
+message FactionBase {
+	optional int32 level = 1;
+	optional int64 exp = 2;
+	optional int32 upperLimit = 3;
+}
+
+message FactionBaseInfo {
+	repeated FactionBase faction = 1;
+}
+
+message SociatySkillBase {
+	optional int32 id = 1;
+	optional int32 effectType = 2;
+	optional int32 level = 3;
+	optional int32 pic = 4;
+	optional int32 requiredSociatyLevel = 5;
+	optional float effectPercent = 6;
+	optional int32 effectValue = 7;
+	optional int32 needBless = 8;
+}
+
+message SociatySkillBaseInfo {
+	repeated SociatySkillBase info = 1;
+}
+
+message PB_ReservationToString {
+	optional int64 roleID1 = 1;
+	optional int64 roleID2 = 2;
+	optional string name1 = 3;
+	optional string name2 = 4;
+	optional int32 rmb = 5;
+	optional int32 powerType = 6;
+	optional PB_ProfessionInfo.Type type1 = 7;
+	optional PB_ProfessionInfo.Type type2 = 8;
+	repeated int64 setRole1 = 9;
+	repeated int64 setRole2 = 10;
+}
+

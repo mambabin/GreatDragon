@@ -1,0 +1,17 @@
+import "FightInfo.proto";
+
+message DesignationInfo{
+	optional int32 id = 1;
+	optional string name = 2;
+	optional int32 group = 3;
+	optional int32 pass = 4;
+	optional int32 pic = 5;
+	optional string desc = 6;
+	optional int32 time = 7;
+	repeated PB_FightAtt.PropertyType properties = 8;
+	repeated int32 propertiesDelta = 9;
+}
+
+message AllDesignationInfo{
+	repeated DesignationInfo designationInfo = 1;
+}

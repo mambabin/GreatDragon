@@ -1,0 +1,32 @@
+message HelperNode {
+	enum BtnFunc{
+		NONE = 0;
+		UI_SINGLEMAP = 1;
+		UI_ELITEMAP = 2;
+		UI = 3;
+	}
+
+	optional int32 id = 1;
+	optional BtnFunc btnFunc = 2;
+	optional int32 param = 3;
+}
+
+message AllHelperNodes {
+	repeated HelperNode nodes = 1;	
+}
+
+message HelperItem {
+	optional int32 id = 1;	
+	optional string nodeNames = 2;	
+	optional string nodeDesc = 3;	
+}
+
+message HelperGroup {
+	optional string name = 1;
+	repeated HelperItem items = 2;
+}
+
+message AllHelper {
+	repeated HelperGroup helpers = 1;
+}
+

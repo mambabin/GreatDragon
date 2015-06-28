@@ -1,0 +1,21 @@
+message PlayerInfo{
+	optional string account = 1;
+	optional string password = 2;
+	optional string platform = 3;
+	optional string deviceID = 4;
+	optional string deviceAddTime = 5;
+	optional string idfa = 6;
+	optional string addTime = 7;
+	optional string osversion = 8;
+	optional string phonetype = 9;
+	optional string imei = 10;
+
+	// Tencent
+	optional string session_id = 11;
+	optional string session_type = 12;
+	optional string openid = 13;
+	optional string openkey = 14;
+	optional string pay_token = 15;
+	optional string pf = 16;
+	optional string pfkey = 17;
+}

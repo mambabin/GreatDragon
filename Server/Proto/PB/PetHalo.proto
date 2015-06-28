@@ -1,0 +1,14 @@
+message PB_PetHaloInfo {
+	optional int32 propertieType = 1;
+	optional int32 level = 2;
+	optional int32 propertyValue = 3;
+	optional int32 maxToughness = 4;
+	optional int32 successRate = 5;
+	optional int32 requiredGoodsID = 6;
+	optional int32 GoodsCount = 7;
+	optional int32 Gold = 8;
+}
+
+message PB_AllPetHaloInfo {
+	repeated PB_PetHaloInfo info = 1;
+}

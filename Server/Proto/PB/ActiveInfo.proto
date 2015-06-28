@@ -1,0 +1,9 @@
+message ActiveInfo {
+	optional int32 id = 1;
+	repeated int32 beginTime = 2;
+	repeated int32 endTime = 3;
+}
+
+message AllActives{
+	repeated ActiveInfo allActives = 1;
+}

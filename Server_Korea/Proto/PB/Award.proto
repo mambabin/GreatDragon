@@ -1,0 +1,83 @@
+import "ItemInfo.proto";
+import "MailInfo.proto";
+
+message AwardInfo{
+	enum Type{
+		ONLINE = 0;
+		COME = 1;
+		LEVEL = 2;
+		POWER = 3;
+		RMB = 4;
+		VIP = 5;
+		DAILY_GOD = 6;
+		WEEKLY_GOD = 7;
+		WORLD_BOSS = 8;
+		WORLD_BOSS_LAST = 9;
+		TOTAL_COME = 10;
+		PLAY_OFF_1 = 11;
+		INVEST_1 = 12;
+		INVEST_2 = 13;
+		INVEST_3 = 14;
+		UNIT_RECHARGE = 15;
+		TOTAL_COST = 16;
+		RANDOM_RETURN_RMB = 17;
+		BLESS = 18;
+		FACTION_WAR_WIN = 19;
+		FACTION_WAR_CONTINUE = 20;
+		LEVEL_SEVEN_DAY = 21;
+		POWER_SEVEN_DAY = 22;
+		TEN_GIFT = 23;
+		FIRST_RECHARGE = 24;
+		DEVIL = 25;
+		QIUBITE = 26;
+		AWARD_FROM_SKY_TOP = 27;
+		AWARD_FROM_SKY_FINAL = 28;
+		NEWYEAR_GIFT = 29;
+		LUCK = 30;
+		MISSION_ACTIVITY = 31;
+		AWARD_FROM_RECHARGE = 32;
+		AWARD_FROM_SPEND = 33;
+		ROOM_CHAPTER = 34;
+		TOP_WEAPON = 35;
+		CONSUME = 36;
+		INVITECODE = 37;
+		CATGIFT = 38;
+		GROUPPURCHASE = 39;
+		REDROSE = 40;
+		YUEZHAN = 41;
+		OPENSERVERSCORE = 42;
+		DAILY_PK = 43;
+		WEEKLY_PK = 44;
+	}
+
+	optional int32 id = 1;
+	optional string name = 2;
+	optional Type type = 3;
+	optional int32 arg = 4;
+	optional int32 award = 5;
+	optional string content = 6;
+}
+
+message AllAwardInfo{
+	repeated AwardInfo awardInfo = 1;
+}
+
+message MailGift{
+	enum Type{
+		CREATE_ROLE = 0;
+		EVERY_DAY = 1;
+		COMPENSATION = 2;
+		RECHARGE = 3;
+	}
+
+	optional Type type = 1;
+	optional PB_MailInfo mail = 2;
+	optional int32 arg1 = 3;
+	optional int32 arg2 = 4;
+	optional int32 arg3 = 5;
+	optional int32 arg4 = 6;
+}
+
+message AllMailGift{
+	repeated MailGift mailGift = 1;
+}

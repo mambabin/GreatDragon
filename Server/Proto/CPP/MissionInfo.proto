@@ -1,0 +1,29 @@
+message MissionTargetRecord{
+	enum ArgSizeType{
+		ARG_SIZE = 2;
+	}
+
+	repeated int32 arg = 1;
+}
+
+message MissionRecord{
+	enum TargetSizeType{
+		TARGET_SIZE = 2;
+	}
+
+	optional int32 count = 1;
+	repeated MissionTargetRecord target = 2;
+}
+
+message MissionAllRecord{
+	enum RecordsSizeType{
+		RECORDS_SIZE = 256;
+	}
+
+	enum CurSizeType{
+		CUR_SIZE = 32;
+	}
+
+	repeated MissionRecord records = 1;
+	repeated int32 cur = 2 [default = -1];
+}

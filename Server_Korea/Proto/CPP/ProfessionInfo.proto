@@ -1,0 +1,28 @@
+import "EquipmentInfo.proto";
+import "MovementInfo.proto";
+import "FightInfo.proto";
+import "AIInfo.proto";
+import "ItemInfo.proto";
+import "MissionInfo.proto";
+
+message ProfessionInfo{
+
+	enum Type{
+		NPC = 0;
+		KNIGHT = 1;
+		RANGER = 2;
+		MAGICIAN = 3;
+	}
+
+	optional Type type = 1;
+	optional bool male = 2;
+	optional float height = 3;
+	optional MovementAtt movementAtt = 4;
+	optional EquipmentAtt equipmentAtt = 5;
+	optional FightAtt fightAtt = 6;
+	optional AIAtt aiAtt = 7;
+	optional ItemPackage itemPackage = 8;
+	optional ALT alt = 9;
+	optional MissionAllRecord missions = 10;
+}
+

@@ -1,0 +1,11 @@
+Install Dependences
+-------------------------------
+sudo apt-get update
+sudo apt-get install gcc g++ make gdb uuid-dev libevent-dev automake autoconf m4 libtool python-dev openssl libssl-dev flex bison mono-devel mono-gmcs libmysqlclient-dev nfs-kernel-server nfs-common
+sudo apt-cache search boost, sudo apt-get install libboost1.48-all-dev OR OTHER
+In Dep dir, do "make install" as administrator.
+
+Setup nfs
+-------------------------------
+In server, insert "/var/www/rekoo/snapshot *(rw,sync,insecure,no_root_squash,no_subtree_check)" into /etc/exports, then restart nfs
+In client, do sudo mount 101.251.102.123:/var/www/rekoo/snapshot snapshot

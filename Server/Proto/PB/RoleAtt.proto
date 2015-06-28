@@ -1,0 +1,13 @@
+import "BaseInfo.proto";
+import "MovementInfo.proto";
+import "FightInfo.proto";
+import "AIInfo.proto";
+import "EquipmentInfo.proto";
+
+message PB_RoleAtt{
+	optional PB_BaseAtt baseAtt = 1;
+	optional PB_MovementAtt movementAtt = 2;
+	optional PB_EquipmentAtt equipmentAtt = 3;
+	optional PB_FightAtt fightAtt = 4;
+	optional PB_AIAtt aiAtt = 5;
+}

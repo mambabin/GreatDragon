@@ -1,0 +1,8 @@
+# 资源根目录
+Res = Res
+
+# 版本文件
+VersionInfo = VersionInfo.bytes
+
+# 生成的更新文件，如果注释掉，程序将把结果输出到标准输出（显示器）上。
+ListFile = List.txt

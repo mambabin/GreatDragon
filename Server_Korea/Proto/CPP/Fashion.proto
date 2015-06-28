@@ -1,0 +1,8 @@
+message FashionAsset{
+	enum RunesSizeType{
+		RUNES_SIZE = 5;
+	}
+
+	optional int32 v = 1 [default = -1];
+	repeated int32 runes = 2 [default = -2];
+}

@@ -1,0 +1,137 @@
+import "ProfessionInfo.proto";
+import "RoleAtt.proto";
+import "MissionInfo.proto";
+import "ItemInfo.proto";
+import "MailInfo.proto";
+import "FightInfo.proto";
+
+message FriendInfo{
+	enum NameSizeType{
+		NAME_SIZE = 32;
+	}
+
+	optional int64 roleID = 1 [default = -1];
+	optional string name = 2;
+	optional ProfessionInfo.Type professionType = 3;
+	optional bool loveHeart = 4;
+	optional bool flag = 5;
+}
+
+message DesignationRecord{
+	optional bool has = 1;
+	optional int64 start = 2;
+}
+
+message PetAsset{
+	enum NameSizeType{
+		NAME_SIZE = 32;
+	}
+	
+	optional int32 id = 1 [default = -1];
+	optional string name = 2;
+	optional int32 pet_level = 3;
+	optional int32 quality = 4;
+	optional int32 level = 5;
+}
+
+message PlayerAtt{
+	enum DayEventSizeType{
+		DAYEVENT_SIZE = 128;
+	}
+	enum FixedEventSizeType{
+		FIXEDEVENT_SIZE = 128;
+	}
+	enum FriendsSizeType{
+		FRIENDS_SIZE = 32;
+	}
+	enum PassGuideSizeType{
+		PASSGUIDE_SIZE = 10;
+	}
+	enum DesignationRecordSizeType{
+		DESIGNATIONRECORD_SIZE = 128;
+	}
+	enum ShowDesignationSizeType{
+		SHOWDESIGNATION_SIZE = 10;
+	}
+	enum MailsSizeType{
+		MAILS_SIZE = 30;
+	}
+	enum PetsSizeType{
+		PETS_SIZE = 20;
+	}
+	enum FansSizeType{
+		FANS_SIZE = 64;
+	}
+	enum FirstLoginIPSizeType{
+		FIRSTLOGINIP_SIZE = 16;
+	}
+	enum LastLoginIPSizeType{
+		LASTLOGINIP_SIZE = 16;
+	}
+
+	enum FactionSizeType {
+		FACTION_SIZE = 22;
+	}
+	enum GodRecordInfoSizeType {
+		GODRECORDINFO_SIZE = 10;
+	}
+	enum GodRecordArg1SizeType {
+		GODRECORDARG1_SIZE = 10;
+	}
+	enum GodRankRecordsSizeType {
+		GODRANKRECORDS_SIZE = 10;
+	}
+	
+	enum PropertieTypeSizeType {
+		PROPERTIETYPE_SIZE = 6;
+	}
+	enum HaloLevelSizeType {
+		HALOLEVEL_SIZE = 6;
+	}
+	enum HaloValueSizeType {
+		HALOVALUE_SIZE = 6;
+	}
+	enum SelfcodeSizeType {
+		SELFCODE_SIZE = 32;
+	}
+	enum OthercodeSizeType {
+		OTHERCODE_SIZE = 32;
+	}
+	enum HaloCountSizeType {
+		HALOCOUNT_SIZE = 6;
+	}
+
+	optional RoleAtt att = 1;
+	optional MissionAllRecord missions = 2;
+	optional ItemPackage itemPackage = 3;
+	optional ALT alt = 4;
+	optional int64 prevLogin = 5;
+	repeated FriendInfo friends = 6;
+	repeated int32 passGuide = 7;
+	optional int64 prevLogout = 8;
+	repeated int32 dayEvent = 9;
+	repeated int32 fixedEvent = 10;
+	repeated DesignationRecord designationRecord = 11;
+	repeated int32 showDesignation = 12 [default = -1];
+	repeated MailInfo mails = 13;
+	repeated PetAsset pets = 14;
+	repeated FriendInfo fans = 15;
+	optional string firstLoginIP = 16;
+	optional string lastLoginIP = 17;
+	optional int32 totalNum = 18;
+	optional int32 loginNum = 19;
+	optional int32 createTime = 20;
+	optional string faction = 21;
+	optional int32 godDueDate = 23;
+	optional int32 godRankIndex = 24;
+	repeated FriendInfo godRecordInfo = 25;
+	repeated int64 godRecordArg1 = 26;
+	repeated bool godRankRecords = 27;
+	optional int32 minGodRank = 29 [default = -1];
+	repeated int32 propertieType = 30;
+	repeated int32 haloLevel = 31;
+	repeated int32 haloValue = 32;
+	optional string selfcode = 33;
+	optional string othercode = 34;
+	repeated int32 haloCount = 35;
+}

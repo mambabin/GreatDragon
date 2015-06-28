@@ -1,0 +1,37 @@
+message GodShip{
+
+	enum Quali{
+		GREEN = 0;
+		BLUE = 1;
+		PURPLE = 2;
+		GOLD = 3;
+		RED = 4;
+	}
+
+	
+	optional int32 id = 1;
+	optional string name = 2;
+	optional int32 Pic = 3;
+	optional int32 Type = 4;
+	optional Quali Quality = 5;
+	optional int32 Level = 6;
+	optional int32 ATK = 7;
+	optional int32 DEF = 8;
+	optional int32 MAXHP = 9;
+	optional int32 CRIT = 10;
+	optional int32 ACCURACY = 11;
+	optional int32 DODGE = 12;
+	optional int32 CRITDEF = 13;
+	optional int32 CRITDamage = 14;
+	optional int32 EXP = 15;
+}
+
+message PB_GodShipAsset{
+	optional int32 id = 1 [default = -1];
+	optional int32 exp = 2;
+	optional int32 quality = 3;
+	optional int32 level = 4;
+}
+message AllGodShips{
+	repeated GodShip godShips = 1;
+}

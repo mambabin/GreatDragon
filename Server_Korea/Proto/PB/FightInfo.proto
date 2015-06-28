@@ -1,0 +1,68 @@
+
+message PB_Skill{
+	optional int32 id = 1 [default = -1];
+	optional int32 level = 2;
+}
+
+message PB_FightPropertyDelta{
+	optional int32 delta = 1;
+	optional float percent = 2;
+}
+
+message PB_RoomHistory{
+	optional int32 count = 1;
+}
+
+message PB_BloodDelta{
+	optional int32 toAtk = 1;
+	optional int32 toDef = 2;
+	optional int32 toDodge = 3;
+	optional int32 toAccuracy = 4;
+}
+
+message PB_FightAtt{
+
+	enum Status{
+		IDLE = 0;
+		MOVE = 1;
+		ATTACK = 2;
+		DEAD = 3;
+	}
+
+	enum PropertyType{
+		ATK = 0;
+		DEF = 1;
+		MAXHP = 2;
+		CRIT = 3;
+		ACCURACY = 4;
+		DODGE = 5;
+	}
+
+	optional Status status = 1;
+	repeated PB_Skill skills = 2;
+	optional int32 selfFaction = 3;
+	optional int32 friendlyFaction = 4;
+	optional int32 reviveTime = 5;
+	optional int32 hp = 10;
+	optional int32 mana = 11;
+	repeated int32 properties = 12;
+	repeated PB_FightPropertyDelta propertiesDelta = 13;
+	optional int32 level = 14;
+	optional int64 exp = 15;
+	optional int32 energy = 16;
+	optional int32 bloodLevel = 17;
+	optional int32 bloodNode = 18;
+	repeated PB_BloodDelta bloodDelta = 19;
+	optional int32 curTower = 20 [default = 1];
+	optional int32 maxTower = 21;
+	optional int32 maxSurvive = 22;
+	optional int32 winPVP = 23;
+	optional int32 losePVP = 24;
+	optional int32 baseWingLevel = 26;
+	optional int32 baseWingDegree = 27;
+	optional int32 worldBossHurt = 28;
+	optional int32 worldBossNum = 29;
+	optional int32 fightingPet = 30 [default = -1];
+	optional int32 transformID = 32;
+	optional int32 pkLevel = 33;
+}

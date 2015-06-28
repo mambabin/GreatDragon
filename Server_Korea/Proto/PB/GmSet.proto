@@ -1,0 +1,21 @@
+message GmSet{
+	enum Type{
+		EXP = 0;
+		COIN = 1;
+		DROP = 2;
+		GOODS = 3;
+		STRONG = 4;
+	}
+
+	optional Type setType = 1;
+	repeated int32 arg = 2;
+	optional string beginDate = 3;
+	optional string endDate = 4;
+	optional string beginTime = 5;
+	optional string endTime = 6;
+}
+
+message AllGmSet{
+	repeated GmSet gmSet = 1;
+}
+

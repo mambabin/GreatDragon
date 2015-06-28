@@ -1,0 +1,3460 @@
+import "PlayerInfo.proto";
+import "BaseInfo.proto";
+import "RoleAtt.proto";
+import "NPCAtt.proto";
+import "Math.proto";
+import "EquipmentInfo.proto";
+import "FightInfo.proto";
+import "StatusInfo.proto";
+import "ProfessionInfo.proto";
+import "ItemInfo.proto";
+import "FuncInfo.proto";
+import "MissionInfo.proto";
+import "BloodInfo.proto";
+import "PlayerAtt.proto";
+import "Award.proto";
+import "MailInfo.proto";
+import "Fashion.proto";
+import "BusinessInfo.proto";
+import "ItemBaseInfo.proto";
+import "RidesInfo.proto";
+
+message NetProto_ClientException{
+	enum ID{
+		GROUPID = 0;
+		UNITID = 0;
+	}
+
+	optional string output = 1;
+	optional string stackTrace = 2;
+	optional string type = 3;
+}
+
+message NetProto_Heartbeat{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 0;
+	}
+}
+
+message NetProto_Login{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 1;
+	}
+
+	optional string account = 1;
+	optional string password = 2;
+	optional int64 version = 3;
+	optional string platform = 4;
+	optional string deviceID = 5;
+	optional string idfa = 6;
+	optional string osversion = 7;
+	optional string phonetype = 8;
+	optional string imei = 9;
+	optional string addTime = 10;
+	optional string deviceAddTime = 11;
+	optional string activateKey = 12;
+	optional bool loginLater = 13;
+
+	// Tencent
+	optional string session_id = 14;
+	optional string session_type = 15;
+	optional string openid = 16;
+	optional string openkey = 17;
+	optional string pay_token = 18;
+	optional string pf = 19;
+	optional string pfkey = 20;
+}
+
+message NetProto_LoginResult{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 2;
+	}
+
+	// < 0: Failure.
+	// >= 0: Success.
+	optional int32 id = 1;
+	optional int32 serverOpenTime = 2;
+}
+
+message NetProto_Logout{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 3;
+	}
+	
+	optional int32 id = 1;
+}
+
+message NetProto_SelectRole
+{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 4;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_CreateRole
+{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 5;
+	}
+
+	optional PB_ProfessionInfo.Type type = 1;
+	optional string name = 2;
+	optional bool male = 3;
+}
+
+message NetProto_ServerTime{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 6;
+	}
+
+	optional int64 time = 1;
+	optional int32 cur = 2;
+}
+
+message NetProto_RoleList{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 7;
+	}
+
+	repeated PB_PlayerAtt roles = 1;
+}
+
+message NetProto_DeleteRole{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 8;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_ReLogin{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 9;
+	}
+
+	optional string account = 1;
+	optional string password = 2;
+	optional string platform = 3;
+}
+
+message NetProto_ReLoginResult{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 10;
+	}
+
+	// < 0: Failure.
+	// >= 0: Success.
+	optional int32 id = 1;
+}
+
+message NetProto_Rank{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 11;
+	}
+	enum Type{
+		POWER = 1;
+		TOWER = 2;
+		LEVEL = 3;
+		GOD = 6;
+		WORLD_BOSS = 7;
+		BLESSCOME = 8;
+		FACTION = 9;
+		PET = 10;
+		DEVIL = 11;
+		AWARD_FROM_SKY = 12;
+		LUCK = 13;
+		QIUBITE = 14;
+		CONSUME = 15;
+		CATGIFT = 16;
+		GROUP_PURCHASE = 17;
+		GROUPRECORD = 18;
+		RESERVATION = 19;
+	}
+
+	optional Type type = 1;
+	repeated RecordInfo rank = 2;
+	optional int32 range = 4;
+	optional RecordInfo finalKiller = 5;
+	optional RecordInfo self = 6;
+}
+
+message NetProto_SetUp{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 12;
+	}
+
+	optional int32 soundVolume = 1;
+	optional int32 musicVolume = 2;
+	optional int32 playerNum = 3;
+	optional bool fixedCamera = 4;
+	optional bool displayOtherEffect = 5;
+	optional bool displayMyEffect = 6;
+	optional bool displayOtherHurtNum = 7;
+}
+
+message NetProto_Register{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 13;
+	}
+
+	optional string account = 1;
+	optional string password = 2;
+	optional string deviceID = 3;
+	optional string idfa = 4;
+}
+
+message NetProto_GetKeyGift{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 14;
+	}
+
+	optional string key = 1;
+	optional int32 res = 2;
+}
+
+message NetProto_StatisticsUIBtn{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 15;
+	}
+
+	optional string ui = 1;
+	optional int32 btn = 2;
+	optional string param = 3;
+}
+
+message NetProto_StatisticsGuide{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 16;
+	}
+
+	optional int32 pass = 1;
+	optional int32 node = 2;
+}
+
+message NetProto_LoginLaterTime{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 17;
+	}
+
+	optional int32 time = 1;
+}
+
+message NetProto_TencentBuyGoodsUrl {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 18;
+	}
+
+	optional string payitem = 1;
+	optional string goodsmeta = 2;
+	optional string goodsurl = 3;
+	optional string appmetadata = 4;
+	optional string url = 5;
+	optional string amt = 6;
+}
+
+message NetProto_LoginURL{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 19;
+	}
+
+	optional string url = 1;
+	optional int32 result = 2;
+}
+
+message NetProto_RechargeParam {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 20;
+	}
+
+	optional string param = 1;
+	optional float v = 2;
+}
+
+// Scene.
+message NetProto_AddPlayers{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 0;
+	}
+
+	repeated int32 id = 1;
+	repeated PB_PlayerAtt att = 2;
+	repeated int32 type = 3;
+}
+
+message NetProto_LoadScene
+{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 1;
+	}
+
+	enum Type{
+		NORMAL = 0;
+		JUMP = 1;
+		LEAVE = 2;
+	}
+
+	optional Type type = 1;
+	optional int32 id = 2;
+	optional int32 pos = 3;
+	optional int32 gemRecover = 4;
+}
+
+message NetProto_DoLoadScene
+{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 2;
+	}
+
+	optional int32 id = 1;
+	optional int32 mapID = 2; // ³¡¾°ID
+	optional PB_Vector2i coord = 3;
+	optional bool multipleRoom = 4;
+}
+
+message NetProto_EndLoadScene
+{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 3;
+	}
+}
+
+message NetProto_AddNPCs{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 4;
+	}
+
+	repeated int32 id = 1;
+	repeated PB_NPCAtt att = 2;
+}
+
+message NetProto_ClearRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 5;
+	}
+
+	optional int32 totalTime = 1;
+	optional int32 index = 2;
+	optional int64 time = 3;
+	optional string md5 = 4;
+	optional int32 exp = 5;
+	optional int32 money = 6;
+	optional int32 honor = 7;
+	optional int32 godScore = 8;
+	optional int32 upRank = 9;
+}
+
+message NetProto_OpenRoomBox{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 6;
+	}
+
+	enum Type{
+		FREE = 0;
+		GEM = 1;
+	}
+
+	optional Type type = 1;
+	repeated int32 result = 2;
+}
+
+message NetProto_BeginWaitRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 7;
+	}
+
+	optional int32 map = 1;
+}
+
+message NetProto_EndWaitRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 8;
+	}
+}
+
+message NetProto_GenNPCs{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 9;
+	}
+
+	optional int32 group = 1;
+	optional int32 pass = 2;
+}
+
+message NetProto_ResetEvent{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 10;
+	}
+
+	optional bool monday = 1;
+	optional bool resetCome = 2;
+}
+
+message NetProto_QuickFight{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 11;
+	}
+
+	optional int32 map = 1;
+	repeated NetProto_GetRes res = 2;
+	optional int32 count = 3;
+}
+
+message NetProto_Win{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 12;
+	}
+
+	optional int32 honor = 1;
+	optional int32 pvpScore = 2;
+}
+
+message NetProto_Lose{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 13;
+	}
+}
+
+message NetProto_Timeout{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 14;
+	}
+}
+
+message NetProto_BeginWaitPVP{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 15;
+	}
+	enum Type{
+		ONE_TO_ONE = 0;
+		HELL = 1;
+	}
+
+	optional Type type = 1;
+	optional bool res = 2;
+}
+
+message NetProto_EndWaitPVP{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 16;
+	}
+	enum Type{
+		ONE_TO_ONE = 0;
+		HELL = 1;
+	}
+
+	optional Type type = 1;
+}
+
+message NetProto_Lottery{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 17;
+	}
+
+	optional int32 res = 1;
+}
+
+message NetProto_GetGift{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 18;
+	}
+
+	optional AwardInfo.Type type = 1;
+	optional int32 index = 2;
+	optional int32 arg = 3;
+}
+
+message NetProto_SingleRecord{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 19;
+	}
+
+	optional int32 mapID = 1;
+	optional RecordInfo record = 2;
+}
+
+message NetProto_EndLoadModel{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 20;
+	}
+}
+
+message NetProto_RoomWaitCount{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 21;
+	}
+
+	optional int32 room = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_PVPWaitCount{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 22;
+	}
+	enum Type{
+		ONE_TO_ONE = 0;
+		HELL = 1;
+	}
+
+	optional Type type = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_CancelWaitRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 23;
+	}
+}
+
+message NetProto_CancelWaitPVP{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 24;
+	}
+}
+
+message NetProto_GetRes{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 25;
+	}
+
+	repeated PB_ItemInfo items = 1;
+}
+
+message NetProto_Invest{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 26;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_InvestAward{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 27;
+	}
+
+	optional int32 id = 1;
+	optional int32 index = 2;
+}
+
+message NetProto_InvestAwardInfo{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 28;
+	}
+
+	repeated int32 award = 1;
+}
+
+message NetProto_SetDayEvent{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 29;
+	}
+
+	optional int32 id = 1;
+	optional int32 v = 2;
+}
+
+message NetProto_SetFixedEvent{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 30;
+	}
+
+	optional int32 id = 1;
+	optional int32 v = 2;
+}
+
+message NetProto_Info{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 31;
+	}
+
+	optional string content = 1;
+}
+
+message NetProto_Error{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 32;
+	}
+
+	optional string content = 1;
+}
+
+message NetProto_GodAward{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 33;
+	}
+
+	optional int64 prevDayRank = 1;
+	optional int32 prevDayGoods = 2;
+	optional int64 prevWeekRank = 3;
+	optional int32 prevWeekGoods = 4;
+}
+
+message NetProto_CreateRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 34;
+	}
+
+	optional int32 map = 1;
+	optional bool noPower = 2;
+	optional RoomInfo info = 3;
+}
+
+message NetProto_JoinRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 35;
+	}
+
+	optional int32 id = 1;
+	optional int32 pos = 2;
+	optional PB_FriendInfo info = 3;
+	optional int32 power = 4;
+	optional bool noPower = 5;
+	optional int32 playerID = 6;
+	optional PB_EquipmentAtt att = 7;
+	optional bool male = 8;
+	optional int32 map = 9;
+	repeated PB_EquipAsset equips = 10;
+}
+
+message NetProto_LeaveRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 36;
+	}
+
+	optional int32 pos = 1;
+}
+
+message NetProto_DestroyRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 37;
+	}
+}
+
+message NetProto_RoomList{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 38;
+	}
+
+	repeated RoomInfo rooms = 1;
+}
+
+message NetProto_EvictRole{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 39;
+	}
+
+	optional int32 pos = 1;
+}
+
+message NetProto_InviteFriend{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 40;
+	}
+
+	optional int64 roleID = 1;
+	optional int32 id = 2;
+	optional string src = 3;
+	optional int32 map = 4;
+	optional int32 flag = 5;
+}
+
+message NetProto_BeginMultiRoom{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 41;
+	}
+}
+
+message NetProto_ResetCheckPoint {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 42;
+	}
+}
+
+message NetProto_GenPet{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 43;
+	}
+
+	optional int32 id = 1;
+	optional int32 player = 2;
+}
+
+message NetProto_OpenObstacle{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 44;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_RegistDeviceServer {
+	enum ID{
+		GROUPID = 2;
+		UNITID = 45;
+	}
+	optional string deviceID = 1;
+	optional string idfa = 2;
+}
+
+message NetProto_StartLoad1{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 46;
+	}
+	optional string deviceID = 1;
+	optional string idfa = 2;
+}
+
+message NetProto_EndLoad1{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 47;
+	}
+	optional string deviceID = 1;
+	optional string idfa = 2;
+}
+
+message NetProto_StartLoad2{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 48;
+	}
+}
+
+message NetProto_EndLoad2{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 49;
+	}
+}
+
+message NetProto_BeginFighting{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 50;
+	}
+}
+
+message NetProto_DelNPCs{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 51;
+	}
+
+	repeated int32 id = 1;
+}
+
+message NetProto_WorldBossCurRank {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 52;
+	}
+
+	repeated RecordInfo rank = 1;
+	optional RecordInfo self = 2;
+	optional int32 selfRank = 3;
+}
+
+message NetProto_FactionWarCurRank {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 53;
+	}
+
+	repeated RecordInfo rank = 1;
+	optional RecordInfo self = 2;
+	optional int32 selfRank = 3;
+}
+
+message NetProto_FactionWarPrevWinner {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 54;
+	}
+
+	optional string name = 1;
+}
+
+message NetProto_GetMonthCardAward {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 55;
+	}
+}
+
+message NetProto_ExchangeGoods {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 56;
+	}
+
+	optional int32 index = 1;
+	optional bool all = 2;
+}
+
+message NetProto_BuyMonthCard {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 57;
+	}
+
+	optional int32 expire = 1;
+}
+
+message NetProto_UseLuckyCard {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 58;
+	}
+}
+
+message NetProto_BIActive {
+	enum ID {
+		GROUPID = 2;
+		UNITID = 59;
+	}
+
+	optional string deviceID = 1;
+	optional string idfa = 2;
+}
+
+// Action.
+message NetProto_Move{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 0;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional Type type = 1;
+	optional int32 id = 2;
+	optional PB_Vector3f start = 3;
+	optional PB_Vector3f end = 4;
+	optional int32 serialNum = 5;
+}
+
+message NetProto_Wear{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 1;
+	}
+
+	optional int32 id = 1;
+	optional int64 equipment = 2;
+}
+
+message NetProto_Unwear{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 2;
+	}
+
+	optional int32 id = 1;
+	optional EquipmentInfo.Type pos = 2;
+}
+
+message NetProto_Attack{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 3;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional Type aType = 1;
+	optional int32 aID = 2;
+	optional PB_Skill aSkill = 3;
+	optional Type dType = 4;
+	optional int32 dID = 5;
+	optional PB_Vector3f tPos = 6;
+	repeated int32 skills = 7;
+	optional int64 serverTime = 8;
+}
+
+message NetProto_DoAttack{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 4;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional Type aType = 1;
+	optional int32 aID = 2;
+	optional PB_Skill aSkill = 3;
+	repeated int32 aSkillID = 4;
+	optional Type dType = 5;
+	optional int32 dID = 6;
+	optional PB_Vector3f tPos = 7;
+	optional PB_Vector3f aPos = 8;
+}
+
+message NetProto_SetPos{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 5;
+	}
+	
+	optional int32 id = 1;
+	optional int32 serialNum = 2;
+	optional PB_Vector3f position = 3;
+}
+
+message NetProto_Die{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 6;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional Type type = 1;
+	optional int32 id = 2;
+	optional Type mType = 3;
+	optional int32 mID = 4;
+}
+
+message NetProto_Revive{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 7;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+		PET = 2;
+	}
+
+	enum Way{
+		CUR = 0;
+		BEGIN = 1;
+		CITY = 2;
+	}
+
+	optional Type type = 1;
+	optional int32 id = 2;
+	optional PB_Vector2i coord = 3;
+	optional float hp = 4;
+	optional bool changeScene = 5;
+	optional Way way = 6;
+}
+
+message NetProto_ModifyExp{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 8;
+	}
+
+	optional int64 exp = 1;
+}
+
+message NetProto_PickItem{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 10;
+	}
+
+	optional int32 dropList = 1;
+	optional int32 index = 2;
+	optional int32 packagePos = 3;
+	optional int32 owner = 4;
+}
+
+message NetProto_LevelUp{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 11;
+	}
+
+	optional int32 id = 1;
+	optional int32 level = 2;
+}
+
+message NetProto_ModifyMoney{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 12;
+	}
+
+	optional int64 money = 1;
+}
+
+message NetProto_GetItem{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 13;
+	}
+
+	optional PB_ItemInfo item = 1;
+	optional int32 pos = 2;
+}
+
+message NetProto_QueryPlayer{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 14;
+	}
+
+	optional int64 roleID = 1;
+	optional PB_PlayerAtt att = 2;
+	optional bool online = 3;
+	optional string name = 4;
+}
+
+message NetProto_PlayerStatus{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 15;
+	}
+
+	enum Status{
+		OFFLINE = 0;
+		ONLINE = 1;
+	}
+
+	repeated int64 roles = 1;
+	repeated Status statuses = 2;
+	repeated int32 level = 3;
+	repeated int32 vip = 4;
+}
+
+message NetProto_AddFriend{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 16;
+	}
+
+	optional int64 roleID = 1;
+	optional string name = 2;
+	optional PB_ProfessionInfo.Type professionType = 3;
+}
+
+message NetProto_DelFriend{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 17;
+	}
+
+	optional int64 roleID = 1;
+	optional bool flag = 2;
+}
+
+message NetProto_ModifyHP{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 18;
+	}
+
+	optional int32 id = 1;
+	optional int32 hp = 2;
+}
+
+message NetProto_ModifyMana{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 19;
+	}
+
+	optional int32 id = 1;
+	optional int32 mana = 2;
+}
+
+message NetProto_ModifyFaction{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 20;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional Type type = 1;
+	optional int32 id = 2;
+	optional int32 selfFaction = 3;
+	optional int32 friendlyFaction = 4;
+}
+
+message NetProto_ModifyMaxHP{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 21;
+	}
+
+	optional int32 id = 1;
+	optional int32 maxHP = 2;
+}
+
+message NetProto_RequestPK{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 22;
+	}
+
+	optional PB_FriendInfo target = 1;
+	optional int32 res = 2;
+}
+
+message NetProto_ApplyPK{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 23;
+	}
+
+	optional int64 origin = 1;
+}
+
+message NetProto_Strong{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 24;
+	}
+	enum Pos{
+		BODY = 0;
+		PACKAGE = 1;
+	}
+	enum Result{
+		SUCCESS = 0;
+		NOTHING = 1;
+		FAILURE = 2;
+	}
+
+	optional Pos pos = 1;
+	optional int32 id = 2;
+	optional Result results = 3;
+	optional bool protect = 4;
+}
+
+message NetProto_ClearStrong{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 25;
+	}
+	enum Pos{
+		BODY = 0;
+		PACKAGE = 1;
+	}
+
+	optional Pos pos = 1;
+	optional int32 id = 2;
+}
+
+message NetProto_Transform {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 26;
+	}
+	enum Type {
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional int32 id = 1;
+	optional Type type = 2;
+}
+
+message NetProto_Mount{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 27;
+	}
+	enum Pos{
+		BODY = 0;
+		PACKAGE = 1;
+	}
+	
+	optional Pos pos = 1;
+	optional int32 id = 2;
+	optional int32 mountPos = 3;
+	optional int32 gemPos = 4;
+}
+
+message NetProto_TalkTo{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 28;
+	}
+
+	optional int32 id = 1;
+	optional int32 map = 2;
+	optional int32 npc = 3;
+}
+
+message NetProto_Recover{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 29;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_AddBloodNode{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 30;
+	}
+	enum Type{
+		NORMAL = 0;
+		PERFECT = 1;
+		LINE = 2;
+	}
+
+	optional Type type = 1;
+	optional bool res = 2;
+}
+
+message NetProto_AddBloodEffect{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 31;
+	}
+	enum Type{
+		NORMAL = 0;
+		ALL = 1;
+	}
+
+	optional Type type = 1;
+	optional int32 soul = 2;
+	optional int32 res = 3;
+	optional int32 count = 4;
+}
+
+message NetProto_Explore{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 32;
+	}
+
+	optional ExploreInfo.Type type = 1;
+	optional int32 event1 = 2;
+	optional int32 event2 = 3;
+}
+
+message NetProto_UnlockBlood{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 33;
+	}
+}
+
+message NetProto_UpdatePos{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 34;
+	}
+
+	optional int32 id = 1;
+	optional PB_Vector3f pos = 2;
+}
+
+message NetProto_SayHello{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 35;
+	}
+
+	optional int64 srcID = 1;
+	optional string srcName = 2;
+	optional int64 destID = 3;
+}
+
+message NetProto_CompleteGuide{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 36;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_Arrange{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 37;
+	}
+
+	optional PB_ItemPackage.Begin begin = 1;
+	repeated PB_ItemInfo items = 2;
+}
+
+message NetProto_IgnorePK{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 38;
+	}
+}
+
+message NetProto_ModifyRMB{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 39;
+	}
+
+	optional int64 value = 1;
+	optional int64 total = 2;
+	optional int64 totalCost = 3;
+}
+
+message NetProto_ModifySoulJade{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 40;
+	}
+
+	optional int64 value = 1;
+}
+
+message NetProto_ModifySoul{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 41;
+	}
+
+	optional int64 value = 1;
+}
+
+message NetProto_ModifyHonor{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 42;
+	}
+
+	optional int32 value = 1;
+}
+
+message NetProto_ModifyDurability{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 43;
+	}
+
+	optional int32 value = 1;
+}
+
+message NetProto_ModifySoulStone{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 44;
+	}
+
+	optional int64 value = 1;
+}
+
+message NetProto_ModifyPKScore{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 45;
+	}
+
+	optional int64 value = 1;
+}
+
+message NetProto_DelItem{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 46;
+	}
+
+	optional int32 pos = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_ModifyVIP{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 47;
+	}
+
+	optional int32 player = 1;
+	optional int32 vip = 2;
+}
+
+message NetProto_RandomGodTarget{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 48;
+	}
+
+	optional PB_PlayerAtt att = 1;
+	optional int32 event = 2;
+}
+
+message NetProto_Inspire{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 49;
+	}
+	enum Type{
+		ATK = 0;
+		DEF = 1;
+		SPECIAL = 2;
+	}
+	enum Dest{
+		GOD = 0;
+		ONE_TO_ONE = 1;
+		HELL = 2;
+		WORLD_BOSS = 3;
+	}
+
+	optional Type type = 1;
+	optional Dest dest = 2;
+}
+
+message NetProto_RequestGodTarget{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 50;
+	}
+}
+
+message NetProto_ModifyGodScore{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 51;
+	}
+
+	optional int32 value = 1;
+}
+
+message NetProto_GodRank{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 52;
+	}
+
+	optional int32 self = 1;
+	optional int32 target = 2;
+}
+
+message NetProto_GetFashion{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 53;
+	}
+
+	optional int32 v = 1;
+	optional int32 pos = 2;
+}
+
+message NetProto_SyncAtt{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 54;
+	}
+
+	repeated int32 properties = 1;
+	repeated PB_FightPropertyDelta propertiesDelta = 2;
+	optional int32 index = 3;
+	optional int64 time = 4;
+	optional string md5 = 5;
+}
+
+message NetProto_ModifySubRMB{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 55;
+	}
+
+	optional int64 value = 1;
+}
+
+message NetProto_GenEquip{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 56;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_GenGem{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 57;
+	}
+	enum Way{
+		NEXT_LEVEL = 0;
+		TOP_LEVEL = 1;
+		ALL_TOP_LEVEL = 2;
+	}
+
+	optional Way way = 1;
+	optional int32 type = 2;
+	optional int32 level = 3;
+	repeated PB_ItemInfo results = 4;
+	optional int32 success = 5;
+	optional int32 fail = 6;
+}
+
+message NetProto_UnlockHole{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 58;
+	}
+	enum Pos{
+		BODY = 0;
+		PACKAGE = 1;
+	}
+	
+	optional Pos pos = 1;
+	optional int32 id = 2;
+	optional int32 index = 3;
+}
+
+message NetProto_UnmountGem{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 59;
+	}
+	enum Pos{
+		BODY = 0;
+		PACKAGE = 1;
+	}
+	
+	optional Pos pos = 1;
+	optional int32 id = 2;
+	optional int32 index = 3;
+}
+
+message NetProto_EnhanceDelta{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 60;
+	}
+	enum Pos{
+		BODY = 0;
+		PACKAGE = 1;
+	}
+
+	optional Pos pos = 1;
+	optional int32 id = 2;
+	optional bool ten = 3;
+	repeated int32 delta = 4;
+}
+
+message NetProto_Enhance{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 61;
+	}
+	enum Pos{
+		BODY = 0;
+		PACKAGE = 1;
+	}
+
+	optional Pos pos = 1;
+	optional int32 id = 2;
+}
+
+message NetProto_Inherit{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 62;
+	}
+	enum Pos{
+		BODY = 0;
+		PACKAGE = 1;
+	}
+
+	optional Pos parentPos = 1;
+	optional int32 parentID = 2;
+	optional Pos childPos = 3;
+	optional int32 childID = 4;
+	optional bool useRMB = 5;
+}
+
+message NetProto_StrongBaseWing{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 63;
+	}
+
+	optional bool useRMB = 1;
+}
+
+message NetProto_BuyWing{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 64;
+	}
+
+	optional int32 id = 1;
+	optional bool forever = 2;
+}
+
+message NetProto_WearWing{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 65;
+	}
+
+	optional int32 id = 1;
+	optional bool baseWing = 2;
+}
+
+message NetProto_GetWing{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 66;
+	}
+
+	optional int32 v = 1;
+	optional int32 pos = 2;
+}
+
+message NetProto_BuyFashion{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 67;
+	}
+
+	optional int32 id = 1;
+	optional bool forever = 2;
+}
+
+message NetProto_MakeFashionHole{
+	enum ID {
+		GROUPID = 3;
+		UNITID = 68;
+	}
+	optional int32 id = 1;
+	optional int32 index = 2;
+}
+
+message NetProto_FashionInlay {
+
+	enum ID {
+		GROUPID = 3;
+		UNITID = 69;
+	}
+	optional int32 id = 1;
+	optional int32 index = 2;
+	optional int32 runeid = 3;
+	optional bool flag = 4;
+}
+
+message NetProto_FashionUnInlay {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 70;
+	}
+	optional int32 id = 1;
+	optional int32 index = 2;
+}
+
+message NetProto_ServerLimitItem{
+	enum ID {
+		GROUPID = 3;
+		UNITID = 71;
+	}
+
+	optional PB_ItemInfo.Type type = 1;
+	optional int32 id = 2;
+	optional int32 count = 3;
+}
+
+message NetProto_FriendsLove {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 72;
+	}
+	optional int64 roleID = 1;
+	optional bool flag = 2;
+}
+
+message NetProto_ChangePartner {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 73;
+	}
+	optional int32 index  = 1;
+	optional PB_FriendInfo fans = 2;
+}
+
+message NetProto_AddFansLove {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 74;
+	}
+	optional int64 roleID = 1;
+}
+
+message NetProto_ModifyLovePoint {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 75;
+	}
+	optional int32 lovePoint = 1;
+}
+
+message NetProto_BuyDurability {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 76;
+	}
+	optional int32 index = 1;
+}
+
+message NetProto_LoginObtRMB {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 77;
+	}
+	optional int32 count = 1;
+}
+
+message NetProto_UnwearWing{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 78;
+	}
+}
+
+message NetProto_GetEquip{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 79;
+	}
+
+	optional int32 id = 1;
+	optional PB_EquipAsset asset = 2;
+}
+
+message NetProto_ResetCount{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 80;
+	}
+	enum Type{
+		SINGLE_ENHANCE = 0;
+		BOSS = 1;
+		GOD = 2;
+		GOD_CD = 3;
+		QUICK_FIGHT_CD = 4;
+	}
+
+	optional Type type = 1;
+	optional int32 arg = 2;
+}
+
+message NetProto_GodPlayer {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 81;
+	}
+
+	optional PB_ProfessionInfo.Type professionType = 1;
+	optional int32 godRank = 2;
+	optional int32 power = 3;
+	optional int32 inspire = 4;
+	optional int64 roleID = 5;
+	optional string str = 6;
+	optional int32 level = 7;
+}
+
+message NetProto_GodRandomPlayer {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 82;
+	}
+
+	repeated NetProto_GodPlayer player = 1;
+}
+
+message NetProto_GodRecords {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 83;
+	}
+	
+	repeated bool flag  = 1;
+	repeated int32 num = 2;
+	repeated PB_ProfessionInfo.Type professionType = 3;
+	repeated int32 level = 4;
+	repeated string name = 5;
+	repeated int32 time = 6;
+	repeated int64 roleID = 7;
+}
+
+message NetProto_GodPanel {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 84;
+	}
+
+	optional NetProto_GodPlayer player = 1;
+	optional int32 num = 2;
+	optional int32 nextTime = 3;
+}
+
+message NetProto_SelectGodRole {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 85;
+	}
+	optional int64 roleID = 1;
+	optional PB_PlayerAtt att = 2;
+}
+
+message NetProto_SetSpecial {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 86;
+	}
+
+	optional int32 npc = 1;
+	optional bool enable = 2;
+}
+
+message NetProto_ResolveEquips {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 87;
+	}
+	optional int32 op = 1;
+}
+
+message NetProto_ModifyPKScoreActive{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 88;
+	}
+
+	optional int64 value = 1;
+}
+
+message NetProto_ModifyRMBActive{
+	enum ID {
+		GROUPID = 3;
+		UNITID = 89;
+	}
+
+	optional int64 value = 1;
+}
+
+message NetProto_DropItem {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 90;
+	}
+
+	optional int32 npc = 1;
+	optional int32 index = 2;
+	optional int32 v = 3;
+	optional int32 v1 = 4;
+	optional int32 v2 = 5;
+}
+
+message NetProto_SellGoods {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 91;
+	}
+	optional GoodsInfo.ColorType op = 1;
+	optional PB_ItemPackage.Begin type = 2; 
+}
+
+message NetProto_Luck {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 92;
+	}
+	optional int32 index = 1;
+	optional bool  free = 2;
+}
+
+message NetProto_GrabRedEnvelope {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 93;
+	}
+	optional string str = 1;
+	optional NetProto_GetRes gr = 2;
+}
+
+message NetProto_CatGift {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 94;
+	}
+	optional int32 allCount = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_GroupPurchase {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 95;
+	}
+	optional int32 allCount = 1;
+}
+
+message NetProto_Rides
+{
+	enum ID
+	{
+		GROUPID = 3;
+		UNITID = 96;
+	}
+
+	optional int32 rides = 1;
+}
+
+message NetProto_RidesTrain
+{
+	enum ID
+	{
+		GROUPID = 3;
+		UNITID = 97;
+	}
+
+	optional int32 index = 1;
+	optional bool high = 2;
+	optional int32 upProperty = 3;
+	optional int32 downProperty = 4;
+	optional int32 upv = 5;
+	optional int32 downv = 6;
+}
+
+message NetProto_GenRides
+{
+	enum ID
+	{
+		GROUPID = 3;
+		UNITID = 98;
+	}
+
+	repeated int32 indexes = 1;
+	repeated int32 ids = 2;
+}
+
+message NetProto_GodShip {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 99;
+	}
+	optional int32 index = 1;
+	optional bool next = 2;
+	optional int32 cut = 3;
+}
+
+message NetProto_Swallow {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 100;
+	}
+	optional int32 index = 1;
+	optional int32 select = 2;
+}
+
+message NetProto_GodPackage {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 101;
+	}
+	optional int32 pool = 1;
+	optional int32 package = 2;
+	optional int32 id = 3;
+	optional int32 exp = 4;
+	optional int32 level = 5;
+	optional int32 quality = 6;
+}
+
+message NetProto_WearGodShip {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 102;
+	}
+	optional int32 index = 1;
+}
+
+message NetProto_UnWearGodShip {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 103;
+	}
+	optional int32 index = 1;
+}
+
+message NetProto_ArrangeGodShip{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 104;
+	}
+}
+
+message NetProto_RidesUP
+{
+	enum ID
+	{
+		GROUPID = 3;
+		UNITID = 105;
+	}
+
+	optional int32 index = 1;
+	optional int32 star = 2;
+}
+
+message NetProto_RidesInherit
+{
+	enum ID
+	{
+		GROUPID = 3;
+		UNITID = 106;
+	}
+
+	optional int32 target = 1;
+	repeated int32 ridesExpend = 2;
+	optional int64 curExp = 3;
+	optional int32 level = 4;
+	optional int32 potential = 5;
+}
+
+message NetProto_SingleGodShip {
+	enum ID {
+		GROUPID = 3;
+		UNITID = 107;
+	}
+	optional int32 index = 1;
+	repeated int32 eat = 2;
+}
+
+message NetProto_RidesLockAtt
+{
+	enum ID
+	{
+		GROUPID = 3;
+		UNITID = 108;
+	}
+
+	optional int32 index = 1;
+	optional int32 lockIndex = 2;
+	optional bool lock = 3;
+}
+
+message NetProto_RidesConfirmTrain
+{
+	enum ID
+	{
+		GROUPID = 3;
+		UNITID = 109;
+	}
+	
+	optional int32 index = 1;
+}
+
+message NetProto_RidesUnLockAtt
+{
+	enum ID
+	{
+		GROUPID = 3;
+		UNITID = 110;
+	}
+
+	optional int32 index = 1;
+}
+
+
+// Skill
+
+message NetProto_AddStatus
+{
+	enum ID{
+		GROUPID = 4;
+		UNITID = 2;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional int32 statusID = 1;
+	optional Type type = 2;
+	optional int32 targetID = 3;
+	optional int32 time = 4;
+	optional PB_Vector3f dest = 5;
+	repeated int32 delSkills = 6;
+	optional int32 aID = 7;
+}
+
+message NetProto_Hit{
+	enum ID{
+		GROUPID = 4;
+		UNITID = 0;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional int32 aSkillID = 1;
+	repeated Type dType = 2;
+	repeated int32 dID = 3;
+	optional Type aType = 4;
+	optional int32 aID = 5;
+	repeated NetProto_AddStatus statuses = 6;
+	optional bool resistControl = 7;
+}
+
+message NetProto_StatusEffect
+{
+	enum ID{
+		GROUPID = 4;
+		UNITID = 1;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	enum Effect{
+		NONE = 0;
+		DODGE = 1;
+		CRIT = 2;
+	}
+
+	optional StatusInfo.StatusType statusType = 1;
+	optional int32 value = 2;
+	optional Type type = 3;
+	optional int32 id = 4;
+	optional Effect effect = 5;
+	optional int32 skillID = 6;
+}
+
+message NetProto_StaticOver{
+	enum ID{
+		GROUPID = 4;
+		UNITID = 3;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional Type type = 1;
+	optional int32 id = 2;
+}
+
+message NetProto_Standup{
+	enum ID{
+		GROUPID = 4;
+		UNITID = 4;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional Type type = 1;
+	optional int32 id = 2;
+}
+
+message NetProto_SkillLevelUp{
+	enum ID{
+		GROUPID = 4;
+		UNITID = 6;
+	}
+
+	optional int32 id = 1;
+	optional int32 delta = 2;
+	optional int64 money = 3;
+}
+
+message NetProto_ClearSkill{
+	enum ID{
+		GROUPID = 4;
+		UNITID = 7;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_DestroySkill{
+	enum ID{
+		GROUPID = 4;
+		UNITID = 8;
+	}
+
+	optional int32 id = 1;
+	repeated int32 skill = 2;
+	optional bool immediately = 3;
+}
+
+// Item
+
+message NetProto_AddGoods{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 0;
+	}
+
+	enum Type{
+		PACKAGE = 0;
+		BODY = 1;
+	}
+
+	repeated GoodsInfo goods = 1;
+	repeated int32 pos = 2;
+	repeated Type type = 3;
+	repeated int32 id = 4;
+}
+
+message NetProto_AddEquipments{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 1;
+	}
+
+	enum Type{
+		PACKAGE = 0;
+		BODY = 1;
+	}
+
+	repeated EquipmentInfo equipments = 1;
+	repeated int32 pos = 2;
+	repeated Type type = 3;
+	repeated int32 id = 4;
+}
+
+message NetProto_ShiftItem{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 2;
+	}
+
+	enum Type{
+		PACKAGE = 0;
+		BODY = 1;
+		ALT = 2;
+		SKILL = 3;
+		FASHION = 4;
+		WING = 5;
+	}
+
+	optional Type prevType = 1;
+	optional int32 prevPos = 2;
+	optional Type newType = 3;
+	optional int32 newPos = 4;
+	optional int32 count = 5;
+}
+
+message NetProto_QueryItemInfo{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 3;
+	}
+	
+	enum Type{
+		GOODS = 0;
+		EQUIPMENT = 1;
+	}
+
+	optional Type type = 1;
+	optional int64 id = 2;
+}
+
+message NetProto_BuyItem{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 4;
+	}
+
+	optional int32 business = 1;
+	optional int32 id = 2;
+	optional int32 count = 3;
+}
+
+message NetProto_SellItem{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 5;
+	}
+
+	optional int32 id = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_Repair{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 6;
+	}
+
+	optional int32 id = 1;
+	optional int32 price = 2;
+}
+
+message NetProto_UseGoods{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 7;
+	}
+
+	optional int32 id = 1;
+	repeated int32 boxItems = 2;
+	optional bool all = 3;
+}
+
+message NetProto_UnlockPackage{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 8;
+	}
+
+	optional PB_ItemPackage.Begin begin = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_RecoverDurability{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 9;
+	}
+}
+
+message NetProto_AddDesignation{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 10;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_DelDesignation{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 11;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_ShowDesignation{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 12;
+	}
+
+	optional int32 player = 1;
+	optional int32 id = 2;
+}
+
+message NetProto_UnshowDesignation{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 13;
+	}
+
+	optional int32 player = 1;
+	optional int32 id = 2;
+}
+
+message NetProto_Recharge{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 14;
+	}
+
+	optional string order = 1;
+	optional string product = 2;
+	optional int32 v = 3;
+}
+
+message NetProto_BusinessInfo{
+	enum ID{
+		GROUPID = 5;
+		UNITID = 15;
+	}
+
+	optional int32 id = 1;
+	optional BusinessInfo info = 2;
+}
+
+message NetProto_TransformWar {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 16;
+	}
+	optional int32 id = 1;
+}
+
+message NetProto_TransformLevelUp {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 17;
+	}
+	optional int32 id = 1;
+}
+
+message NetProto_TransformActive {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 18;
+	}
+	optional int32 id = 1;
+	optional int32 index = 2;
+}
+
+message NetProto_Reservation {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 19;
+	}
+	optional int64 roleID = 1;
+	optional int32 rmb = 2;
+	optional int32 time = 3;
+}
+
+message NetProto_OneReservation {
+	optional int32 index = 1;
+	optional int32 powerType = 2;
+	optional int64 roleID1 = 3;
+	optional int64 roleID2 = 4;
+	optional string name1 = 5;
+	optional string name2 = 6;
+	optional int32 fans1 = 7;
+	optional int32 fans2 = 8;
+	optional int32 rmb = 9;
+	optional PB_ProfessionInfo.Type type1 = 10;
+	optional PB_ProfessionInfo.Type type2 = 11;
+}
+
+message NetProto_ReservationList {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 20;
+	}
+	repeated NetProto_OneReservation list = 1;
+}
+
+
+// Mission
+
+// Mission
+
+message NetProto_Talk{
+	enum ID{
+		GROUPID = 6;
+		UNITID = 0;
+	}
+
+	optional int32 id = 1;
+	optional PB_Vector3f pos = 2;
+}
+
+message NetProto_Answer{
+	enum ID{
+		GROUPID = 6;
+		UNITID = 1;
+	}
+
+	optional int32 id = 1;
+	repeated PB_FuncInfo func = 2;
+	repeated string str = 3;
+}
+
+// TODO
+message NetProto_RequestFunc{
+	enum ID{
+		GROUPID = 6;
+		UNITID = 2;
+	}
+
+	optional PB_FuncInfo func = 1;
+}
+
+// TODO
+message NetProto_ReplyFunc{
+	enum ID{
+		GROUPID = 6;
+		UNITID = 3;
+	}
+
+	optional PB_FuncInfo func = 1;
+	optional MissionContent mission = 2;
+}
+
+message NetProto_ApplyMission{
+	enum ID{
+		GROUPID = 6;
+		UNITID = 4;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_CompleteMission{
+	enum ID{
+		GROUPID = 6;
+		UNITID = 5;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_GiveUpMission{
+	enum ID{
+		GROUPID = 6;
+		UNITID = 6;
+	}
+
+	optional int32 id = 1;
+}
+
+// Chat
+
+message NetProto_Chat{
+	enum ID{
+		GROUPID = 7;
+		UNITID = 0;
+	}
+
+	enum Channel{
+		SYSTEM = 0;
+		GUILD = 1;
+		TEAM = 2;
+		WORLD = 3;
+		SECRET = 4;
+		CURSENCE = 5;
+	}
+
+	enum Type{
+		PLAYER = 0;
+		NPC = 1;
+	}
+
+	optional Channel channel = 1;
+	optional string content = 2;
+	optional Type sType = 3;
+	optional PB_FriendInfo sender = 4;
+	optional int64 receiver = 5;
+	optional int32 vip = 6;
+}
+
+message NetProto_Message{
+	enum ID{
+		GROUPID = 7;
+		UNITID = 1;
+	}
+
+	optional string content = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_SendMail{
+	enum ID{
+		GROUPID = 7;
+		UNITID = 2;
+	}
+
+	optional int64 receiver = 1;
+	optional PB_MailInfo mail = 2;
+	optional int32 pos = 3;
+}
+
+message NetProto_GetMailItem{
+	enum ID{
+		GROUPID = 7;
+		UNITID = 3;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_ReadMail{
+	enum ID{
+		GROUPID = 7;
+		UNITID = 4;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_DelMail{
+	enum ID{
+		GROUPID = 7;
+		UNITID = 5;
+	}
+
+	optional int32 id = 1;
+}
+
+// GM
+
+message NetProto_GMLogin{
+	enum ID{
+		GROUPID = 8;
+		UNITID = 0;
+	}
+
+	enum OP {
+		NONE = 0;
+		CP = 1;
+		YUNYING = 2;
+		CUSTOM = 3;
+	}
+
+	optional string account = 1;
+	optional string passwd = 2;
+	optional OP permission = 3; 
+}
+
+//message NetProto_GMChat{
+//	enum ID{
+//		GROUPID = 8;
+//		UNITID = 1;
+//	}
+//
+//	optional NetProto_Chat.Channel channel = 1;
+//	optional string content = 2;
+//	optional PB_FriendInfo sender = 3;
+//}
+
+message NetProto_GMOrder{
+	enum ID{
+		GROUPID = 8;
+		UNITID = 2;
+	}
+
+	enum Type{
+		ONLINE_NUM = 0;
+		GET_GOODS = 1;
+		GET_RMB = 2;
+		GET_MONEY = 3;
+		MESSAGE = 4;
+		SYSTEM = 5;
+		GET_EQUIPMENT = 6;
+		RELOAD = 7;
+		MUL_EXP = 8;
+	}
+
+	optional Type type = 1;
+	optional int64 target = 2;
+	optional int64 nValue = 3;
+	optional float fValue = 4;
+	optional string sValue = 5;
+	optional int32 res = 6;
+}
+
+message NetProto_GMOnlinePlayers{
+	enum ID{
+		GROUPID = 8;
+		UNITID = 3;
+	}
+
+	repeated string name = 1;
+	repeated int64 roleID = 2;
+}
+
+message NetProto_GMChat{
+	enum ID{
+		GROUPID = 8;
+		UNITID = 1;
+	}
+
+	optional NetProto_Chat.Channel channel = 1;
+	optional string content = 2;
+	optional PB_FriendInfo sender = 3;
+	optional PB_FriendInfo recver = 4;
+	optional int32 time = 5;
+}
+
+message NetProto_GMServerMgr {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 5;
+	}
+
+	optional int32 time = 1;
+	optional int32 num = 2;
+}
+
+message NetProto_GMPlayerQuery {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 6;
+	}
+
+	optional PB_PlayerAtt att = 1;
+	optional bool online = 2;
+}
+
+message NetProto_GMForbid {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 7;
+	}
+
+	enum Select {
+		NOTALKING = 1;
+		FREEZE = 2;
+	}
+	
+	optional Select select = 1;
+	optional bool flag = 2;
+	optional int32 startTime = 3;
+	optional int32 endTime = 4;
+	optional int64 roleID = 5;
+	optional string GM = 6;
+	optional string name = 7;
+	optional int32 level = 8;
+	optional PB_ProfessionInfo.Type professionType = 9;
+	optional int32 id = 10;
+}
+
+message NetProto_GMNotice {
+	enum GMOP {
+		ADD = 1;
+		DEL = 2;
+		ALTER = 3;
+	}
+	optional int32 id = 1;
+	optional int32 startTime = 2;
+	optional int32 endTime = 3;
+	optional int32 hz = 4;
+	optional string content = 5;
+	optional bool state1 = 6;
+	optional bool state2 = 7;
+	optional GMOP op = 8;
+}
+
+message NetProto_GMRequest {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 9;
+	}
+	
+	enum Select {
+		ALL = 1;
+		NOTALKING =  2;
+		FREEZE = 3;
+	}
+
+	optional Select select = 1;
+	repeated NetProto_GMForbid forbid = 2;
+}
+
+message NetProto_GMShutDownServer {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 10;
+	}
+	
+}
+
+message NetProto_GMChatRecords {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 11;
+	}
+	optional int32 startTime = 1;
+	optional int32 endTime = 2;
+	repeated NetProto_GMChat chat = 3;
+}
+
+message NetProto_GMRegistrCount {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 12;
+	}
+	optional int32 startTime = 1;
+	optional int32 endTime = 2;
+	optional int32 deviceID = 3;
+	optional int32 allDeviceID = 4;
+	optional int32 accountID = 5;
+	optional int32 allAccountID = 6;
+	optional int32 roleID = 7;
+	optional int32 allRoleID = 8;
+}
+
+message NetProto_GMRoleCount {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 13;
+	}
+	optional int32 startTime = 1;
+	optional int32 endTime = 2;
+	optional int32 maxCount = 3;
+	optional int32 maxCountTime = 4;
+	optional int32 minCount = 5;
+	optional int32 minCountTime = 6;
+	repeated int32 count = 7;
+	repeated int32 time = 8;
+	optional int32 interval = 9;
+}
+
+message LevelStatistics {
+	optional int32 level = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_GMLevelStatistics {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 14;
+	}
+	optional int32 startTime = 1;
+	optional int32 endTime = 2;
+	repeated LevelStatistics array = 3;
+
+}
+
+message NetProto_GMRankStatistics {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 15;
+	}
+
+	optional NetProto_Rank.Type type = 1;
+	optional int32 count = 2;
+	repeated RecordInfo rank = 3;
+}
+
+message NetProto_GMOpenGuide {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 16;
+	}
+
+	optional int64 roleID = 1;
+	optional int32 id = 2;
+	optional bool open = 3;
+}
+
+message NetProto_GMNoticeMgr {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 17;
+	}
+	repeated NetProto_GMNotice notice = 1;
+	optional bool flag = 2;
+}
+
+message NetProto_GMRegister {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 18;
+	}
+
+	optional string account = 1;
+	optional string password = 2;
+	optional NetProto_GMLogin.OP  permission = 3;
+}
+
+message NetProto_GMShutDownMessage {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 19;
+	}
+	
+	optional int32 groupID = 1;
+	optional int32 unitID = 2;
+}
+
+message NetProto_GMOpenMessage {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 20;
+	}
+	
+	optional int32 groupID = 1;
+	optional int32 unitID = 2;
+}
+
+message NetProto_GMModifyVIP {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 21;
+	}
+	
+	optional int64 roleID = 1;
+	optional int32 delta = 2;
+}
+
+message NetProto_GMAddExchange {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 22;
+	}
+	
+	repeated string exchange = 1;
+	optional int32 group = 2;
+	optional int32 endTime = 3;
+	optional int32 giftID = 4;
+}
+
+message NetProto_GMQueryFaction {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 23;
+	}
+	
+	optional NetProto_FactionInfo info = 1;
+	repeated NetProto_FactionMem mem = 2;
+	optional string winName = 3;
+}
+
+message NetProto_GMChangeFactionMem {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 24;
+	}
+	optional string factionName = 1;
+	optional int64 roleID = 2;
+	optional bool flag = 3;
+}
+
+message NetProto_GMAddRekooRole {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 25;
+	}
+	optional int64 roleID = 1;
+}
+
+message NetProto_GMLoginInfo {
+	enum ID{
+		GROUPID = 8;
+		UNITID = 26;
+	}
+	optional int32 count = 1;
+	optional string str = 2;
+}
+
+message NetProto_ObtainPet {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 0;
+	}
+	optional int32 id = 1;
+	optional int32 index = 2;
+}
+
+message NetProto_PetFighting {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 2;
+	}
+	optional int32 index = 1;
+}
+
+message NetProto_PetRest {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 3;
+	}
+	optional int32 index = 1;
+	optional bool flag = 2;
+}
+
+message NetProto_PetAttach {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 4;
+	}
+	optional int32 index = 1;
+}
+
+message NetProto_PetLevelUp {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 5;
+	}
+	optional int32 index = 1;
+	optional int32 change = 2;
+}
+
+message NetProto_PetLearnSkill {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 6;
+	}
+	optional int32 index = 1;
+	optional int32 skillID = 2;
+	optional int32 skillsIndex = 3;
+}
+
+message NetProto_PetInherit {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 7;
+	}
+	optional int32 indexPre = 1;
+	optional int32 indexAfter = 2;
+	optional bool inheritSkill = 3;
+	optional PB_PetAsset pet = 4;
+}
+
+message NetProto_PetAdvance {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 8;
+	}
+	optional int32 index = 1;
+}
+
+message NetProto_PetPsychicsLevelUp {
+	enum ID {
+		GROUPID = 9;
+		UNITID = 9;
+	}
+	optional int32 index = 1;
+	optional int32 res = 2;
+}
+
+message NetProto_ActiveGemRequest {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 0;
+	}
+	optional int32 value = 1;
+}
+
+message NetProto_ActiveDoubleGem {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 1;
+	}
+}
+
+message NetProto_ActiveUpGradeGem {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 2;
+	}
+	optional int32 index = 1;
+}
+
+message NetProto_ActiveGetGem {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 3;
+	}
+	optional bool flag = 1;
+}
+
+message NetProto_ActiveFight {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 4;
+	}
+}
+
+message NetProto_ActiveStrongeSolider {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 5;
+	}
+	optional int32 count = 1;
+}
+
+message NetProto_EnterPlayOff{
+	enum ID {
+		GROUPID = 10;
+		UNITID = 6;
+	}
+
+	optional int32 id = 1;
+}
+
+message NetProto_PlayOffInfo{
+	enum ID {
+		GROUPID = 10;
+		UNITID = 7;
+	}
+
+	optional int32 id = 1;
+	optional int32 day = 2;
+	optional int32 pass = 3;
+	optional int32 overTime = 4;
+	optional int32 result = 5;
+	optional PB_PlayerAtt att = 6;
+	optional int32 res = 7;
+	optional int32 turn = 8;
+}
+
+message NetProto_PreparePlayOff{
+	enum ID {
+		GROUPID = 10;
+		UNITID = 8;
+	}
+}
+
+message NetProto_Treasure {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 9;
+	}
+	optional int32 index = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_Hire {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 10;
+	}
+	repeated PB_PlayerAtt att = 1;
+	optional int32 index = 2;
+}
+
+message NetProto_MoneyTree {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 11;
+	}
+	optional int32 index = 1;
+	optional int32 count = 2;
+}
+
+message NetProto_TreasureBox {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 12;
+	}
+	repeated PB_ItemInfo items = 1;
+}
+
+message NetProto_FlyPlan {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 13;
+	}
+	optional int32 index = 1;
+}
+
+message NetProto_BlessCome {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 14;
+	}
+	optional int32 count = 1;
+}
+
+message NetProto_ModifyBlessScore {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 15;
+	}
+	optional int32 bless = 1;
+}
+
+message NetProto_TopUpObtRMB {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 16;
+	}
+}
+
+message NetProto_ServerOpenTime {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 17;
+	}
+	optional int32 serverOpenTime = 1;
+}
+
+message NetProto_InvateCode {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 18;
+	}
+	optional string othercode = 1;
+}
+
+message NetProto_UpdateInvateCount {
+	enum ID {
+		GROUPID = 10;
+		UNITID = 19;
+	}
+	optional int32 count = 1;
+}
+
+message NetProto_CreateFaction {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 0;
+	}
+	optional string str = 1;
+	optional int32 res = 2;
+}
+
+message NetProto_DelFaction {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 1;
+	}
+	optional int32 res = 1;
+}
+
+message NetProto_Donate {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 2;
+	}
+	optional int32 type = 1;
+}
+
+message NetProto_FactionNotice {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 3;
+	}
+	optional string str = 1;
+} 
+
+message NetProto_Designate {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 4;
+	}
+	optional int64 roleID = 1;
+	optional int32 type = 2;
+}
+
+message NetProto_AddMem {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 5;
+	}
+	optional int64 roleID = 1;
+	optional bool flag = 2;
+}
+
+message NetProto_DelMem {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 6;
+	}
+	optional int64 roleID = 1;
+}
+
+message NetProto_Applicant {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 7;
+	}
+	optional string str = 1;
+}
+
+message NetProto_Guardian {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 8;
+	}
+	optional int32 type = 1;
+}
+
+message NetProto_FactionInfo {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 9;
+	}
+	optional string name = 1;
+	optional int32 rank = 2;
+	optional int64 exp = 3;
+	optional int32 num = 4;
+	optional string str = 5;
+	optional int32 level = 6;
+}
+
+message NetProto_FactionMem {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 10;
+	}
+	optional int32 contribute = 1;
+	optional string name = 2;
+	optional int32 office = 3;
+	optional int32 lastLoginTime = 4;
+	optional int32 type = 5;
+	optional int64 roleID = 6;
+}
+
+message NetProto_FactionChangeMem {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 11;
+	}
+
+	repeated NetProto_FactionMem data = 1;
+	repeated bool flag = 2;
+}
+
+message NetProto_FactionGuardian {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 12;
+	}
+	optional int32 item = 1;
+	optional string str = 2;
+	optional int32 type = 3;
+}
+
+message NetProto_FactionApplicant {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 13;
+	}
+	optional int32 level = 1;
+	optional int32 power = 2;
+	optional int32 vip = 3;
+	optional string name = 4;
+	optional int64 roleID = 5;
+}
+
+message NetProto_FactionAllApplicant {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 14;
+	}
+	repeated NetProto_FactionApplicant data = 1;
+}
+
+message NetProto_FactionList {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 15;
+	}
+	repeated NetProto_FactionInfo info = 1;
+	repeated string str = 2;
+}
+
+message NetProto_AcceptToFaction {
+	enum ID {
+		GROUPID = 11;
+		UNITID = 16;
+	}
+	optional string factionName = 1;
+}
+
+message NetProto_AsyncStatistics {
+	enum ID {
+		GROUPID = 12;
+		UNITID = 0;
+	}
+	optional bool isFirstIN = 1;
+	optional bool beginAutoInit = 2;
+	optional bool beginDecompress = 3;
+	optional int32 decompressCur = 4;
+	optional int32 decompressTotal = 5;
+	optional bool beginInit = 6;
+	optional bool checkVersion = 7;
+	optional bool beginDownload = 8;
+	optional string md5 = 9;
+	repeated int32 needDownload = 10;
+	optional int32 downloadFile = 11;
+	optional int32 overDownloadFile = 12;
+	optional bool endDownload = 13;
+	optional bool beginLoad = 14;
+	optional bool endLoad = 15;
+}
+
+message NetProto_StatisticsAGSLoadScene {
+	enum ID {
+		GROUPID = 12;
+		UNITID = 1;
+	}
+	optional bool after = 1;
+}
+
+message NetProto_StatisticsAGSLoadNPC {
+	enum ID {
+		GROUPID = 12;
+		UNITID = 2;
+	}
+	optional int32 index = 1;
+	optional bool after = 2;
+}
+

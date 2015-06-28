@@ -1,0 +1,59 @@
+import "EquipmentInfo.proto";
+
+message EquipmentRandomColor{
+	optional EquipmentInfo.ColorType color = 1;
+	optional int32 chance1 = 2;
+	optional int32 chance2 = 3;
+	optional int32 chance3 = 4;
+}
+message AllEquipmentRandomColor{
+	repeated  EquipmentRandomColor equipmentRandomColor = 1;
+}
+
+message EquipmentRandomPos{
+	optional EquipmentInfo.Type pos = 1;
+	optional int32 atk = 2;
+	optional int32 def = 3;
+	optional int32 hp = 4;
+	optional int32 crit = 5;
+	optional int32 accuracy = 6;
+	optional int32 dodge = 7;
+}
+message AllEquipmentRandomPos{
+	repeated  EquipmentRandomPos equipmentRandomPos = 1;
+}
+
+message EquipmentRandomLevel{
+	optional int32 level = 1;
+
+	optional int32 atkMin = 2;
+	optional int32 atkMax = 3;
+
+	optional int32 defMin = 4;
+	optional int32 defMax = 5;
+
+	optional int32 hpMin = 6;
+	optional int32 hpMax = 7;
+
+	optional int32 critMin = 8;
+	optional int32 critMax = 9;
+
+	optional int32 accuracyMin = 10;
+	optional int32 accuracyMax = 11;
+
+	optional int32 dodgeMin = 12;
+	optional int32 dodgeMax = 13;
+}
+message AllEquipmentRandomLevel{
+	repeated  EquipmentRandomLevel equipmentRandomLevel = 1;
+}
+
+message EquipmentRandomEffect{
+	optional int32 id = 1;
+	optional int32 effectId = 2;
+	optional int32 chance = 3;
+}
+message AllEquipmentRandomEffect{
+	repeated  EquipmentRandomEffect equipmentRandomEffect = 1;
+}
+

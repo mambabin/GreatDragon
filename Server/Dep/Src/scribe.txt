@@ -1,0 +1,109 @@
+rpm -ivh	 openssl-devel-0.9.8a-18.15.x86_64.rpm
+
+rpm -ivh	 curl-devel-7.15.1-19.7.x86_64.rpm
+rpm -ivh	 iptraf-3.0.0-13.2.x86_64.rpm
+rpm -ivh	 libidn-devel-0.6.0-14.2.x86_64.rpm
+rpm -ivh	 e2fsprogs-devel-1.38-25.21.x86_64.rpm
+rpm -ivh	 freetype2-devel-2.1.10-18.11.3.x86_64.rpm
+rpm -ivh	 fontconfig-devel-2.3.94-18.16.x86_64.rpm
+rpm -ivh         krb5-devel-1.4.3-19.17.x86_64.rpm
+rpm -ivh	 libjpeg-devel-6.2.0-18.2.x86_64.rpm
+rpm -ivh         libpng-devel-1.2.8-19.6.x86_64.rpm
+rpm -ivh	 pcre-devel-6.4-14.2.x86_64.rpm
+rpm -ivh	 readline-devel-5.1-24.13.x86_64.rpm
+rpm -ivh	 sqlite-devel-3.2.8-15.2.x86_64.rpm
+rpm -ivh	 tcl-devel-8.4.12-16.2.x86_64.rpm
+rpm -ivh	 tk-8.4.12-14.2.x86_64.rpm
+rpm -ivh	 tk-devel-8.4.12-14.2.x86_64.rpm
+rpm -ivh	 x11-tools-0.1-36.2.x86_64.rpm
+rpm -ivh	 xorg-x11-devel-6.9.0-50.45.x86_64.rpm
+rpm -ivh         mysql-devel-5.0.26-12.8.x86_64.rpm
+
+
+cd /tmp/software
+tar xjvf Python-2.5.4.tar.bz2
+cd Python-2.5.4
+./configure --enable-unicode=ucs4 --prefix=/usr/local/services/python
+make && make install
+
+## 把系统中原有的python换掉
+rm -f /usr/bin/python
+ln -s /usr/local/services/python/bin/python  /usr/bin/python
+
+ln -s /usr/local/services/python/bin/python2.5 /usr/bin/python2.5
+
+cd /tmp/software
+tar zxvf libevent-1.4.13-stable.tar.gz
+cd libevent-1.4.13-stable
+./configure --prefix=/usr/local/services/libevent
+make
+make install
+
+
+
+cd  /tmp/software
+tar xzvf m4-1.4.15.tar.gz 
+cd m4-1.4.15/
+./configure --prefix=/usr/local/services/m4
+make install
+export PATH=/usr/local/services/m4/bin/:$PATH
+
+cd  ..
+tar -zxvf autoconf-2.68.tar.gz 
+cd autoconf-2.68/
+./configure --prefix=/usr/local/services/autoconf/
+make
+make install
+export PATH=/usr/local/services/autoconf/bin/:$PATH
+
+cd ..
+tar xzvf automake-1.11.1.tar.gz 
+cd automake-1.11.1/
+./configure --prefix=/usr/local/services/automake/
+make
+make install
+
+cd ..
+tar -zxvf boost_1_44_0.tar.gz 
+cd boost_1_44_0/
+./bootstrap.sh --with-python=/usr/local/services/python/lib/python2.5 --with-python=2.5.4 --with-icu=/usr/local/lib/icu --prefix=/usr/local/services/boost
+./bjam --prefix=/usr/local/services/boost install
+echo "/usr/local/services/boost/lib" >> /etc/ld.so.conf
+echo "/usr/local/services/boost/include" >> /etc/ld.so.conf
+ldconfig
+
+cd  ..
+tar xzvf libtool-2.4.tar.gz 
+cd libtool-2.4/
+./configure --prefix=/usr/local/services/libtool
+make install
+export PATH=/usr/local/services/libtool/bin/:$PATH
+
+cd ..
+tar xzvf thrift-0.4.0.tar.gz 
+cd thrift-0.4.0/
+export PY_PREFIX=/usr/local/services/python
+./bootstrap.sh
+./configure --prefix=/usr/local/services/thrift --with-csharp=no --with-java=no --with-erlang=no --with-perl=no --with-php=no --with-ruby=no --with-boost=/usr/local/services/boost/
+make
+make install
+echo "/usr/local/services/thrift/lib" >> /etc/ld.so.conf
+ldconfig
+
+cd contrib/fb303/
+./bootstrap.sh 
+./configure --prefix=/usr/local/services/fb303 --with-boost=/usr/local/services/boost/ --with-thriftpath=/usr/local/services/thrift/
+make
+make install
+
+cd  /tmp/software
+tar xzvf facebook-scribe-2ee14d3.tar.gz 
+cd facebook-scribe-2ee14d3/
+./bootstrap.sh --prefix=/usr/local/services/scribe --with-thriftpath=/usr/local/services/thrift/ --with-fb303path=/usr/local/services/fb303/ --with-boost=/usr/local/services/boost/
+OR ./configure --prefix=/usr/local/ --with-thriftpath=/usr/local/ --with-fb303path=/usr/local/ --with-boost=/usr/ LIBS="-lboost_filesystem-mt -lboost_system-mt"
+make
+make install
+cd /usr/local/services/scribe
+mkdir conf
+mkdir -p /data/scribe_logs
+ln -s /data/scribe_logs/ /usr/local/services/scribe/logs

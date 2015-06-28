@@ -1,0 +1,74 @@
+message BloodInfo{
+	optional int32 level = 1;
+	optional string name = 2;
+	optional int32 pic = 3;
+	optional int32 requiredLevel = 4;
+	optional ExploreInfo.SoulJadeType soulJadeType = 5;
+	optional int32 soulJadeCount = 6;
+	optional int32 limit = 7;
+	optional int32 toAtk = 8;
+	optional int32 toDef = 9;
+	optional int32 toDodge = 10;
+	optional int32 toAccuracy = 11;
+	optional int32 requiredMoney = 12;
+	optional int32 requiredGem = 13;
+	optional int32 lastNode = 14;
+}
+
+message AllBloodInfo{
+	repeated BloodInfo bloodInfo = 1;
+}
+
+message BloodNodeInfo{
+	enum Type{
+		ATT = 0;
+		SKILL_CD = 1;
+		AREA = 2;
+		INC_MANA = 3;
+		INC_ENERGY = 4;
+		DEC_MANA = 5;
+		TRANSFORM_TIME = 6;
+	}
+
+	optional int32 id = 1;
+	optional string name = 2;
+	optional int64 requiredSoul = 3;
+	optional int64 requiredGem = 4;
+	optional float successRate = 5;
+	repeated Type type = 6;
+	repeated int32 arg1 = 7;
+	repeated int32 arg2 = 8;
+	optional int32 goods = 9;
+	optional int32 count = 10;
+}
+
+message AllBloodNodeInfo{
+	repeated BloodNodeInfo bloodNodeInfo = 1;
+}
+
+message ExploreInfo{
+	enum Type{
+		NORMAL = 0;
+		HIGH = 1;
+	}
+	enum SoulJadeType{
+		NONE = 0;
+		SMALL = 1;
+		MEDIUM = 2;
+		BIG = 3;
+		PERFECT = 4;
+	}
+
+	optional int32 id = 1;
+	optional Type type = 2;
+	optional string desc = 3;
+	optional SoulJadeType soulJadeType = 4;
+	optional int32 soulJadeCount = 5;
+	optional int32 soul = 6;
+	optional int32 rate = 7;
+	optional int32 soulStone = 8;
+}
+
+message AllExploreInfo{
+	repeated ExploreInfo exploreInfo = 1;
+}

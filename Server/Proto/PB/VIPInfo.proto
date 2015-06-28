@@ -1,0 +1,26 @@
+message VIPInfo {
+	optional int32 level = 1;
+	optional int32 rmb = 2;
+	optional int32 goods = 3;
+	optional float expDelta = 5;
+	optional int32 reviveDelta = 6;
+	optional int32 resetSingleEnhance = 7;
+	optional int32 inspireCount = 8;
+	optional int32 resetBoss = 9;
+	optional int32 resetGod = 10;
+	optional bool clearGodCD = 11;
+	optional int32 pic = 12;
+	optional int32 buyDurability = 13;
+	optional int32 transformCount = 14;
+	optional bool quickFight = 15;
+	optional bool quickSell = 16;
+	optional bool clearQuickFightCD = 17;
+	optional int32 mulTowerHireCount = 18;
+	optional int32 towerResetCount = 19;
+	optional int32 moneyTreeCount = 20;
+	optional int32 durabilityDelta = 21;
+}
+
+message AllVIPInfo {
+	repeated VIPInfo vipInfo = 1;
+}

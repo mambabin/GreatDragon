@@ -1,0 +1,64 @@
+message StatusInfo{
+	enum StatusType{
+		HURT = 0;
+		STATIC = 1;
+		FLYAWAY = 2;
+		GOD = 3;
+		SKY = 4;
+		GROUND = 5; // Only used by server.
+		STANDUP = 6; // Only used by server.
+		SPEED = 7;
+		CANTMOVE = 8;
+		GIDDY = 9;
+		FEAR = 10;
+		RECOVER = 11;
+		FREEZE = 12;
+		IGNORE_DEF = 13;
+		SELF_ATT = 14;
+		DEC_HURT = 15;
+		ROOM_EXP = 16;
+	}
+
+	enum TargetType
+	{
+		NO_TARGET = 0;
+		ATTACKER = 1;
+		DEFENDER = 2;
+	}
+
+	enum TriggerType{
+		NO_TRIGGER = 0;
+		HIT = 1;
+		ATTACK = 2;
+		BEATTACKED = 3;
+	}
+
+	enum HurtType{
+		NORMAL = 0;
+		ALWAYS = 1;
+	}
+
+	enum PosType{
+		HEAD = 0;
+		BODY = 1;
+		FEET = 2;
+	}
+
+	optional int32 id = 1;
+	optional StatusType statusType = 2;
+	optional int32 value = 3;
+	optional float percent = 4;
+	optional int32 count = 5;
+	optional int32 interval = 6;
+	optional float rate = 7;
+	optional TargetType targetType = 8;
+	optional TriggerType triggerType = 9;
+	optional int32 next = 10;
+	optional int32 res = 11;
+	optional HurtType hurtType = 12;
+	optional PosType posType = 13;
+}
+
+message AllStatuses{
+	repeated StatusInfo statuses = 1;
+}

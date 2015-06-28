@@ -1,0 +1,18 @@
+ServerIP = 192.168.0.254, 
+
+ServerPort = 9090, 
+
+# 上传失败的重试次数，-1为不限制
+MaxTry = 5
+
+# 更新文件，如果注释掉，程序将从标准输入（键盘）读取数据
+ListFile = List.txt
+
+# 存放最终压缩文件的目录
+Out = Out
+
+# 版本文件
+VersionInfo = VersionInfo.bytes
+
+# 杂质版本
+LitterVersion = 0

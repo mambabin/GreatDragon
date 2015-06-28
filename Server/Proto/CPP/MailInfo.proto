@@ -1,0 +1,22 @@
+import "ItemBaseInfo.proto";
+
+message MailInfo{
+	enum SenderSizeType{
+		SENDER_SIZE = 32;
+	}
+	enum TitleSizeType{
+		TITLE_SIZE = 64;
+	}
+	enum ContentSizeType{
+		CONTENT_SIZE = 256;
+	}
+
+	optional string sender = 1;
+	optional int64 time = 2;
+	optional string title = 3;
+	optional string content = 4;
+	optional ItemInfo item = 5;
+	optional bool read = 6;
+	optional int64 rmb = 7;
+	optional bool isRmb = 8;
+}

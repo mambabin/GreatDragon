@@ -1,0 +1,20 @@
+import "Award.proto";
+
+message PlayOff{
+	enum Condition{
+		EVENT = 0;
+	}
+
+	optional int32 id = 1;
+	optional int32 limit = 2;
+	optional Condition condition = 3;
+	optional int32 arg1 = 4;
+	optional int32 arg2 = 5;
+	repeated int32 time = 6;
+	repeated int32 over = 7;
+	optional AwardInfo.Type awardType = 8;
+}
+
+message AllPlayOff{
+	repeated PlayOff playoff = 1;
+}

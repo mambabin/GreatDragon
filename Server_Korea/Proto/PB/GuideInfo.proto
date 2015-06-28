@@ -1,0 +1,83 @@
+message GuideNode{
+	enum EndCondition{
+		NONE = 0;
+		CLICK = 1;
+		OPEN_UI = 2;
+		END_OPEN_FUNC = 3;
+		PRESS = 4;
+		OVER_TALK = 5;
+		IMMEDIATELY = 6;
+		IN_PEACE_SCENE = 100;
+	}
+	enum DoEvent{
+		NONE_EVENT = 0;
+		OPEN_FUNC = 1;
+		FULL_ENERGY = 2;
+		PAUSE = 3;
+		ADD_SKILL = 4;
+		TALK = 5;
+		OPENUI = 6;
+		TIMEDO = 7;
+	}
+	enum MaskType{
+		CIRCLE = 0;
+		SQUARE = 1;
+		NONE_MASK = 2;
+	}
+
+	optional int32 id = 1;
+	optional int32 next = 2;
+	optional int32 effectID = 3;
+	optional int32 ui = 4;
+	optional int32 param = 5;
+	optional float x = 6;
+	optional float y = 7;
+	optional int32 index = 8;
+	optional EndCondition endCondition = 9;
+	optional DoEvent doEvent = 10;
+	optional float scaleX = 11;
+	optional float scaleY = 12;
+	optional MaskType maskType = 13;
+	optional float maskSX = 14;
+	optional float maskSY = 15;
+	optional float maskPX = 16;
+	optional float maskPY = 17;
+	optional float tipsX = 18;
+	optional float tipsY = 19;
+	optional float z = 20;
+	optional float pauseTime = 21;
+}
+
+message AllGuideNode{
+	repeated GuideNode guideNodes = 1;
+}
+
+message GuidePass{
+	enum TriggerType{
+		NONE = 0;
+		LOAD_SCENE = 1;
+		OVER_GUIDE = 2;
+		OPEN_FUNC = 3;
+		GAIN_GOODS = 4;
+		GAIN_EQUIPMENT = 5;
+		LEARN_SKILL = 6;
+		APPLY_MISSION = 7;
+		COMPLETE_MISSION = 8;
+		PROFESSION = 9;
+		OPEN_NPC_GROUP = 10;
+		IN_SCENE = 11;
+		LEVEL_UP = 12;
+		MISSION_OVER = 13;
+		ATTACK_NPC = 14;
+		BOSS_DEAD = 15;
+	}
+
+	optional int32 id = 1;
+	repeated TriggerType triggerType = 2;
+	repeated int32 param = 3;
+	optional int32 firstNode = 4;
+}
+
+message AllGuidePass{
+	repeated GuidePass guidePasses = 1;
+}

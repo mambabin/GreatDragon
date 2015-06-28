@@ -1,0 +1,16 @@
+message PB_FuncInfo{
+
+	enum Type{
+		NONE = 0;
+		MISSION = 1;
+		BUSINESS = 2;
+		ROOM = 3;
+	}
+
+	optional Type type = 1;
+	repeated int32 arg = 2;
+}
+
+message PB_FuncAtt{
+	repeated PB_FuncInfo funcs = 1;
+}

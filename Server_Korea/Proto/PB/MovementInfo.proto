@@ -1,0 +1,20 @@
+import "Math.proto";
+
+message PB_MovementAtt{
+
+	enum Status{
+		IDLE = 0;
+		MOVE = 1;
+		FOLLOW = 2;
+		TALK_TO = 3;
+	}
+
+	optional Status status = 1;
+	optional int32 mapID = 2;
+	optional int32 prevNormalMap = 3;
+	optional PB_Vector2i prevCoord = 4;
+	optional PB_Vector2i logicCoord = 5;
+	optional PB_Vector3f position = 6;
+	optional int32 moveSpeed = 7;
+	optional int32 radius = 8;
+}

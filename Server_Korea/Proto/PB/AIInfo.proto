@@ -1,0 +1,54 @@
+import "Math.proto";
+
+message PB_AIAtt{
+
+	enum Status{
+		BORN = 0;
+		IDLE = 1;
+		BUSY = 2;
+		FLEE = 3;
+		RESET = 4;
+	}
+
+	enum MoveType{
+		DONTMOVE = 0;
+		FREE = 1;
+		PATH = 2;
+	}
+
+	enum SearchType{
+		DONTSEARCH = 0;
+		MINDIST = 1;
+	}
+
+	enum FleeType{
+		DONTFLEE = 0;
+		HP = 1;
+		SEARCH = 2;
+	}
+
+	enum AIType{
+		NORMAL = 0;
+		BOX = 1;
+		TIME = 2;
+		TRIGGER =  3;
+		FOLLOW = 4;
+	}
+
+	optional Status status = 1;
+	optional PB_Vector2i birthCoord = 2;
+	optional int32 moveRadius = 3;
+	optional MoveType moveType = 4;
+	optional int32 followRadius = 5;
+	optional int32 searchRadius = 6;
+	optional SearchType searchType = 7;
+	optional FleeType fleeType = 8;
+	optional float fleeHP = 9;
+	optional float callPercent = 10;
+	optional int32 followDelta = 11;
+	optional bool canAttackBack = 12;
+	optional int32 moveInterval = 13;
+	optional int32 searchInterval = 14;
+	optional AIType aiType = 15;
+	repeated int32 arg = 16;
+}

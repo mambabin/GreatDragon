@@ -1,0 +1,14 @@
+import "ProfessionInfo.proto";
+
+message BaseAtt{
+	enum NameSizeType{
+		NAME_SIZE = 32;
+	}
+
+	optional string name = 1;
+	optional ProfessionInfo.Type professionType = 2;
+	optional bool male = 3;
+	optional int64 roleID = 4;
+	optional float height = 5;
+	optional bool passStory = 6;
+}

@@ -1,0 +1,22 @@
+message PB_ReservationTime {
+	optional int32 id = 1;
+	optional int32 appointmentBeginHour = 2;
+	optional int32 appointmentBeginMinute = 3;
+	optional int32 appointmentEndHour = 4;
+	optional int32 appointmentEndMinute = 5;
+	optional int32 challengeEndHour = 6;
+	optional int32 challengeEndMinute = 7;
+	optional int32 enterBeginHour = 8;
+	optional int32 enterBeginMinute = 9;
+	optional int32 fightBeginHour = 10;
+	optional int32 fightBeginMinute = 11;
+	optional int32 fightEndHour = 12;
+	optional int32 fightEndMinute = 13;
+
+}
+
+message PB_AllReservationTimes {
+	repeated PB_ReservationTime times = 1;
+}
+
+

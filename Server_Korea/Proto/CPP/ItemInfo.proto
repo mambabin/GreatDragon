@@ -1,0 +1,101 @@
+import "Math.proto";
+import "Fashion.proto";
+import "EquipmentInfo.proto";
+import "ItemBaseInfo.proto";
+import "GodShip.proto";
+import "RidesInfo.proto";
+
+message TransformAsset {
+	optional int32 id = 1 [default = -1];
+	optional int32 quality = 2;
+	optional int32 level = 3;
+}
+
+message ItemPackage{
+	enum Begin{
+		EQUIPMENT = 0;
+		GOODS = 105;
+		GEM = 210;
+	}
+	enum Length{
+		LENGTH = 105;
+	}
+
+	enum ItemsSizeType{
+		ITEMS_SIZE = 315; 
+	}
+	enum WingsSizeType{
+		WINGS_SIZE = 32;
+	}
+	enum FashionsSizeType{
+		FASHIONS_SIZE = 32;
+	}
+	enum EquipsSizeType{
+		EQUIPS_SIZE = 150;
+	}
+	enum TransformsSizeType{
+		TRANSFORMS_SIZE = 12;
+	}
+	enum GodShipsSizeType{
+		GODSHIPS_SIZE = 506;
+	}
+	enum GodShipsPackageSizeType{
+		GODSHIPSPACKAGE_SIZE = 500;
+	}
+
+	enum RidesSizeType
+	{
+		RIDES_SIZE = 100;
+	}
+
+	repeated ItemInfo items = 1;
+	optional int64 money = 2;
+	optional int64 rmb = 3;
+	optional int32 validNumEquipment = 4;
+	optional int32 validNumGoods = 5;
+	optional int32 validNumGem = 6;
+	optional int64 soul = 7;
+	optional int64 smallSoul = 8;
+	optional int64 mediumSoul = 9;
+	optional int64 bigSoul = 10;
+	optional int64 perfectSoul = 11;
+	optional int32 honor = 12;
+	optional int32 durability = 13;
+	optional int64 totalRMB = 14;
+	optional int64 soulStone = 15;
+	optional int64 pkScore = 16 [default = 1000];
+	optional int32 vip = 17;
+	optional int32 godScore = 18;
+	optional int64 subRMB = 20;
+	repeated int32 wings = 21 [default = -1];
+	repeated FashionAsset fashions = 23;
+	optional int32 lovePoint = 24;
+	repeated EquipAsset equips = 25;
+	optional int64 pkScoreActive = 26;
+	optional int32 rmbActive = 27;
+	optional int64 totalCost = 28;
+	optional int32 blessActive = 29;
+	repeated TransformAsset transforms = 30;
+	optional int32 activeCost = 31;
+	optional int32 activeCostEndTime = 32;
+	repeated RidesAsset rides = 33;
+	repeated GodShipAsset godShips = 34;
+	repeated int32 godShipsPackage = 35 [default = -1];
+	optional int64 ridesFood = 36;
+	optional int32 openServerScore = 37;
+	optional bool pkStatus = 38;
+}
+
+message ALT{
+	enum Pos{
+		BEGIN = 0;
+		END = 6;
+	}
+
+	enum AltSizeType{
+		ALT_SIZE = 6;
+	}
+
+	repeated ItemInfo alt = 1;
+}
+

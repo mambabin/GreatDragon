@@ -1,0 +1,19 @@
+message NoticeInfo {
+	enum BtnFunc {
+		NONE = 0;
+		UI_ONLINE = 1;
+		UI_SIGNIN_CONTINUE = 2;
+		UI_SIGNIN_TOTAL = 3;
+		UI_LUCKY = 4;
+		UI_FOOD = 5;
+		UI_VCOIN = 6;
+	}
+
+	optional string name = 1;
+	optional string context = 2;
+	optional BtnFunc btnFunc = 3;
+}
+
+message AllNotice {
+	repeated NoticeInfo allNotice = 1;
+}

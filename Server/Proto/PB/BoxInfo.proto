@@ -1,0 +1,32 @@
+message BoxInfo{
+	enum Type{
+		NONE = 0;
+		EXP = 1;
+		MONEY = 2;
+		GOODS = 3;
+		EQUIPMENT = 4;
+		RMB = 5;
+		SOUL = 6;
+		SOULJADE = 7;
+		SOULSTONE = 8;
+		DESIGNATION = 9;
+		FASHION = 10;
+		SUBRMB = 11;
+		WING = 12;
+		GODSCORE = 13;
+		TRANSFORM = 14;
+		GODSHIP = 15;
+	}
+
+	optional int32 id = 1;
+	optional int32 num = 2;
+	optional bool prof = 3;
+	repeated Type type = 4;
+	repeated int32 arg1 = 5;
+	repeated int32 arg2 = 6;
+	repeated int32 arg3 = 7;
+}
+
+message AllBoxes{
+	repeated BoxInfo boxes = 1;
+}

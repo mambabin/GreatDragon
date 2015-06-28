@@ -1,0 +1,8 @@
+message VersionInfo{
+	optional int64 version = 1;
+	repeated string origin = 2;
+	repeated string guid = 3;
+	repeated string md5 = 4;
+	repeated int32 size = 5;
+	repeated bytes litter = 6;
+}

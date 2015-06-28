@@ -1,0 +1,161 @@
+message MissionContent{
+	repeated string mission = 1;
+	optional string accept = 2;
+	optional string reject = 3;
+}
+
+message MissionArg{
+	repeated int32 arg = 1;
+}
+
+message MissionOpen{
+	enum Type{
+		NONE = 0;
+		LEVEL = 1;
+		COMPLETE_MISSION = 2;
+		HASGOODS = 3;
+		APPLY_MISSION = 4;
+		OPENSERVERDATE = 5;
+
+	}
+
+	repeated Type type = 1;
+	repeated MissionArg arg = 2;
+}
+
+message MissionTarget{
+	enum Type{
+		NONE = 0;
+		KILLNPC = 1;
+		TALK = 2;
+		GETGOODS = 3;
+		CLEAR_ROOM = 4;
+		CLEAR_ONLYROOM = 5;
+		CLEAR_TOWER = 6;
+		CLEAR_SURVIVE = 7;
+		CLEAR_HERO = 8;
+		STRONG = 10;
+		UNLOCK_BLOODNODE = 12;
+		PVP = 14;
+		LEVEL_TO = 15;
+		MOUNT = 16;
+		ENHANCE = 17;
+		STRONG_WING_TO = 18;
+		SKILL_LEVEL_TO = 19;
+		HELL_KILL = 20;
+		ADD_FRIEND = 21;
+		BE_ADDED_FRIEND = 22;
+		STRONG_TO = 23;
+		UNLOCK_BLOODNODE_TO = 24;
+		ENTER_ANY_ROOM = 25;
+		SURVIVE_TO = 26;
+		PETHALO_COUNT = 27;
+		PETHALO_LEVEL = 28;
+		RECHARGE_OPEN = 29;
+		STRONGALL_OPEN = 30;
+		TOWER_OPEN = 31;
+		OBTRIDE_OPEN = 32;
+		LEVELUPRIDE_OPEN = 33;
+		TRAINRIDE_OPEN = 34;
+		PETEVOLUTION_OPEN = 35;
+		OBTGODSHIP_OPEN = 36;
+		LEVELUPGODSHIP_OPEN = 37;
+		JINJIEAWAKEN_OPEN = 38;
+	}
+
+	repeated Type type = 1;
+	repeated MissionArg arg = 2;
+}
+
+message MissionAward{
+	enum Type{
+		NONE = 0;
+		EXP = 1;
+		MONEY = 2;
+		GOODS = 3;
+		EQUIPMENT = 4;
+		DESIGNATION = 5;
+		RMB = 6;
+		SOULJADE = 7;
+		SOUL = 8;
+		SOULSTONE = 9;
+		HONOR = 10;
+		DURABILITY = 11;
+		SUBRMB = 12;
+		ACTIVITY = 13;
+		OPENSERVERSCORE = 14;
+	}
+
+	repeated Type type = 1;
+	repeated MissionArg arg = 2;
+}
+
+message MissionPort{
+	enum Type{
+		NPC = 0;
+		AUTO = 1;
+		CHANGE_SCENE = 2;
+		LOGIN = 3;
+	}
+
+	optional Type type = 1;
+	repeated int32 arg = 2;
+}
+
+message MissionTrack{
+	enum Type{
+		NONE = 0;
+		ROOM = 1;
+		NPC = 2;
+		OPENUI = 3;
+	}
+
+	optional Type type = 1;
+	repeated int32 arg = 2;
+}
+
+message MissionInfo{
+	enum Type{
+		MAJOR = 0;
+		MINOR = 1;
+		DAILY = 2;
+		LINE = 3;
+		OPENSERVER = 4;
+	}
+
+	optional Type type = 1;
+	optional int32 id = 2;
+	optional string name = 3;
+	optional string desc = 4;
+	optional string inContent = 5;
+	optional MissionOpen open = 6;
+	optional MissionTarget target = 7;
+	optional MissionAward award = 8;
+	optional int32 next = 9;
+	optional int32 maxCount = 10;
+	optional int32 groupID = 11;
+	optional MissionPort in = 12;
+	optional MissionPort out = 13;
+	optional string completeDesc = 14;
+	optional string outContent = 15;
+	optional MissionTrack targetTrack = 16;
+	optional MissionTrack outTrack = 17;
+}
+
+message AllMissions{
+	repeated MissionInfo missions = 1;
+}
+
+message PB_MissionTargetRecord{
+	repeated int32 arg = 1;
+}
+
+message PB_MissionRecord{
+	optional int32 count = 1;
+	repeated PB_MissionTargetRecord target = 2;
+}
+
+message PB_MissionAllRecord{
+	repeated PB_MissionRecord records = 1;
+	repeated int32 cur = 2;
+}

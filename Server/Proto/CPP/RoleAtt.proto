@@ -1,0 +1,13 @@
+import "BaseInfo.proto";
+import "MovementInfo.proto";
+import "FightInfo.proto";
+import "AIInfo.proto";
+import "EquipmentInfo.proto";
+
+message RoleAtt{
+	optional BaseAtt baseAtt = 1;
+	optional MovementAtt movementAtt = 2;
+	optional EquipmentAtt equipmentAtt = 3;
+	optional FightAtt fightAtt = 4;
+	optional AIAtt aiAtt = 5;
+}

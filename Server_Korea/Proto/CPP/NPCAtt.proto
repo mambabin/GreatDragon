@@ -1,0 +1,73 @@
+import "RoleAtt.proto";
+import "FuncInfo.proto";
+
+message NPCAtt{
+
+	enum ColorType{
+		WHITE = 0;
+		GREEN = 1;
+		BLUE = 2;
+		YELLOW = 3;
+		RED = 4;
+	}
+
+	enum DescSizeType{
+		DESC_SIZE = 256;
+	}
+	enum PeddleAudioSizeType{
+		PEDDLEAUDIO_SIZE = 3;
+	}
+	enum TalkAudioSizeType{
+		TALKAUDIO_SIZE = 3;
+	}
+	enum EquipsSizeType{
+		EQUIPS_SIZE = 12;
+	}
+
+	optional int32 id = 1;
+	optional RoleAtt att = 2;
+	optional int32 pic = 3;
+	optional string desc = 4;
+	optional FuncAtt funcAtt = 5;
+	optional int32 dropID = 6;
+	repeated int32 peddleAudio = 7;
+	optional float peddleMaxDistance = 8;
+	optional int32 peddleMinInterval = 9;
+	optional int32 peddleMaxInterval = 10;
+	repeated int32 talkAudio = 11;
+	optional int32 bornTime = 12;
+	optional int32 shockDelay = 13;
+	optional int32 shockTime = 14;
+	optional int32 bornEffect = 15;
+	optional int32 bornEffectTime = 16;
+	optional float specialPercent = 17;
+	optional int32 bearAudio = 18;
+	optional int32 dieAudio = 19;
+	optional ColorType color = 20;
+	optional float hue = 21;
+	repeated EquipAsset equips = 22;
+	optional bool newSpecial = 23;
+	optional int32 type = 24;
+	optional int32 quality = 25;
+	optional int32 level = 26;
+	optional int32 goodsID = 27;
+	optional int32 goodsCount = 28;
+	optional int32 dieEffect = 29;
+	optional int32 Grade = 30;
+}
+
+message AllNPCs{
+	enum NpcsSizeType{
+		NPCS_SIZE = 1024;
+	}
+
+	repeated NPCAtt npcs = 1;
+}
+
+message AllPets{
+	enum PetsSizeType{
+		PETS_SIZE = 64;
+	}
+
+	repeated NPCAtt pets = 1;
+}

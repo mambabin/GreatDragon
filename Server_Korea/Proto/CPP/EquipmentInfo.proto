@@ -1,0 +1,46 @@
+import "FightInfo.proto";
+import "ItemBaseInfo.proto";
+import "GodShip.proto";
+
+message EquipAsset{
+	enum GemModelSizeType{
+		GEMMODEL_SIZE = 5;
+	}
+	enum GemTypeSizeType{
+		GEMTYPE_SIZE = 5;
+	}
+	enum EnhanceDeltaSizeType{
+		ENHANCEDELTA_SIZE = 4;
+	}
+	enum RandomTypeSizeType{
+		RANDOMTYPE_SIZE = 3;
+	}
+	enum RandomDeltaSizeType{
+		RANDOMDELTA_SIZE = 3;
+	}
+
+	optional int32 mode = 1 [default = -1];
+	optional int32 strongLevel = 2;
+	repeated int32 gemModel = 3;
+	repeated int32 gemType = 4;
+	repeated int32 enhanceDelta = 5;
+	repeated int32 randomType = 6;
+	repeated int32 randomDelta = 7;
+	optional int32 effectId = 8;
+}
+
+message EquipmentAtt{
+	enum EquipmentsSizeType{
+		EQUIPMENTS_SIZE = 12;
+	}
+	enum GodShipsSizeType{
+		GODSHIPS_SIZE = 6;
+	}
+
+	repeated int64 equipments = 1 [default = -1];
+	optional int32 wing = 3 [default = -1];
+	optional int32 fashion = 4 [default = -1];
+	optional bool baseWing = 5;
+	optional int32 rides = 6 [default = -1];
+	repeated int32 godShips = 7; [default = -1];
+}

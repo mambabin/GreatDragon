@@ -1,0 +1,10 @@
+import "ProfessionInfo.proto";
+
+message PB_BaseAtt{
+	optional string name = 1;
+	optional PB_ProfessionInfo.Type professionType = 2;
+	optional bool male = 3;
+	optional int64 roleID = 4;
+	optional float height = 5;
+	optional bool passStory = 6;
+}

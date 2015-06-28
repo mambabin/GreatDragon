@@ -1,0 +1,773 @@
+import "BaseInfo.proto";
+import "PlayerInfo.proto";
+import "PlayerAtt.proto";
+import "EquipmentInfo.proto";
+import "NetProto.proto";
+import "ProfessionInfo.proto";
+
+message DCProto_SaveRoleData{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 0;
+	}
+
+	repeated PB_PlayerAtt data = 1;
+	repeated PlayerInfo info = 2;
+}
+
+message DCProto_DeleteRoleData{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 1;
+	}
+
+	optional string account = 1;
+	optional int64 id = 2;
+	repeated int64 equipments = 3;
+	optional string platform = 4;
+}
+
+message DCProto_LoadRoleData{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 2;
+	}
+
+	optional string account = 1;
+	repeated PB_PlayerAtt data = 2;
+	optional int64 prevRole = 3;
+	optional string platform = 4;
+}
+
+message DCProto_CollectRole{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 3;
+	}
+
+	optional int64 cur = 1;
+	repeated RecordInfo singleRecord = 2;
+	repeated RecordInfo Restriction = 3;
+	optional RecordInfo GodInfoTime = 4;
+	optional RecordInfo winFactionInfo = 5;
+	repeated RecordInfo factionInfo = 6;
+}
+
+message DCProto_AddAccount{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 4;
+	}
+
+	optional PlayerInfo info = 1;
+	optional bool res = 2;
+	optional int32 id = 3;
+	optional string ip = 4;
+}
+
+message DCProto_AddRole{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 5;
+	}
+
+	optional PlayerInfo info = 1;
+	optional PB_PlayerAtt data = 2;
+}
+
+message DCProto_SaveSingleRecord{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 6;
+	}
+
+	optional int32 mapID = 1;
+	optional RecordInfo record = 2;
+}
+
+message DCProto_HasName{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 7;
+	}
+
+	optional NetProto_CreateRole cr = 1;
+	optional int32 id = 2;
+	optional bool has = 3;
+}
+
+
+message DCProto_Login{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 8;
+	}
+
+	optional NetProto_Login login = 1;
+	optional int32 id = 2;
+	optional int32 res = 3;
+	optional string ip = 4;
+	optional bool useActivateKey = 5;
+	optional bool newUser = 6;
+	optional bool beyond = 7;
+}
+
+message DCProto_QueryRole{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 9;
+	}
+
+	optional int64 roleID = 1;
+	optional PB_PlayerAtt att = 2;
+	optional int32 id = 3;
+	optional string name = 4;
+}
+
+message DCProto_SendMail{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 10;
+	}
+
+	optional NetProto_SendMail sm = 1;
+	optional int32 id = 2;
+}
+
+message DCProto_GetKeyGift{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 11;
+	}
+
+	optional string key = 1;
+	optional int32 id = 2;
+	optional int32 res = 3;
+	optional bool done = 4;
+	repeated int32 event = 5;
+	repeated int32 index = 6;
+	optional int64 roleID = 7;
+	optional int32 group = 8;
+}
+
+message DCProto_Recharge{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 12;
+	}
+
+	optional NetProto_Recharge recharge = 1;
+	optional int32 id = 2;
+	optional PlayerInfo info = 3;
+	optional int64 roleID = 4;
+	optional int32 rmb = 5;
+	optional bool over = 6;
+	optional int32 level = 7;
+}
+
+message DCProto_CostRecord{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 13;
+	}
+
+	optional int64 role = 1;
+	optional string reason = 2;
+	optional int32 rmbValue = 3;
+	optional int64 rmb = 4;
+	optional int64 subRMB = 5;
+	optional int32 arg1 = 6;
+	optional int32 arg2 = 7;
+	optional PlayerInfo info = 8;
+	optional int32 level = 9;
+	optional int32 subrmbValue = 10;
+}
+
+message DCProto_PlayerStatus{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 14;
+	}
+
+	optional int32 id = 1;
+	optional NetProto_PlayerStatus ps = 2;
+}
+
+message DCProto_SaveChat{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 15;
+	}
+
+	optional int32 type = 1;
+	optional string sender = 2;
+	optional string receiver = 3;
+	optional string content = 4;
+	optional int64 senderID = 5;
+	optional int64 receiverID = 6;
+}
+
+message DCProto_GodTarget{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 16;
+	}
+
+	optional int32 id = 1;
+	optional int64 roleID = 2;
+	optional PB_PlayerAtt att = 3;
+	optional bool res = 4;
+	optional int32 event = 5;
+}
+
+message DCProto_LoadPlayerAtt {
+	enum ID {
+		GROUPID = 1;
+		UNITID = 17;
+	}
+
+	optional int64 roleID = 1;
+	optional bool flag = 2;
+	optional int64 roleID2 = 3;
+}
+
+message DCProto_LoadFriendsFans {
+	enum ID {
+		GROUPID = 1;
+		UNITID = 18;
+	}
+
+	optional int64 roleID = 1;
+	optional int64 roleID2 = 2;
+}
+
+message DCProto_ModifyFixedEventBit{
+	enum ID {
+		GROUPID = 1;
+		UNITID = 19;
+	}
+
+	optional int64 roleID = 1;
+	optional int32 id = 2;
+	optional int32 bit = 3;
+	optional bool one = 4;
+}
+
+message DCProto_ModifyGodRank {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 20;
+	}
+
+	optional int64 roleID = 1;
+	optional int32 rank = 2;
+}
+
+message DCProto_GodRankRecordInfo {
+	optional RecordInfo info = 1;
+	optional bool flag = 2;
+}
+
+message DCProto_SaveGodRankInfoRecord {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 21;
+	}
+
+	optional DCProto_GodRankRecordInfo info1 = 1;
+	optional DCProto_GodRankRecordInfo info2 = 2;
+}
+
+message DCProto_QueryGodRole{
+	enum ID{
+		GROUPID = 1;
+		UNITID = 22;
+	}
+
+	optional int64 roleID = 1;
+	optional PB_PlayerAtt att = 2;
+	optional int32 id = 3;
+}
+
+message DCProto_RandomRoles {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 23;
+	}
+
+	optional int32 count = 1;
+	repeated PB_PlayerAtt atts = 2;
+}
+
+message DCProto_SendMailExceptRoles {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 24;
+	}
+	repeated int64 roleIDs = 1;
+	optional NetProto_SendMail sm = 2;
+}
+
+message DCProto_AddOutLineFriends {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 25;
+	}
+	optional int64 roleID1 = 1;
+	optional int64 roleID2 = 2;
+	optional string name = 3;
+	optional PB_ProfessionInfo.Type professionType = 4;
+}
+
+message DCProto_LoadHireRoleDate {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 26;
+	}
+	repeated int64 roleID = 1;
+	repeated PB_PlayerAtt atts = 2;
+	optional int32 id = 3;
+	optional int32 power = 4;
+}
+
+message DCProto_QueryRoleFaction {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 27;
+	}
+	repeated int64 roleID = 1;
+	repeated string faction = 2;
+}
+
+message DCProto_TencentBuyGoodsUrl {
+	enum ID{
+		GROUPID = 1;
+		UNITID = 28;
+	}
+
+	optional NetProto_TencentBuyGoodsUrl v = 1;
+	optional int32 id = 2;
+}
+
+message DCProto_Cost {
+	enum ID {
+		GROUPID = 1;
+		UNITID = 29;
+	}
+
+	optional int32 v = 1;
+	optional PlayerInfo info = 2;
+}
+
+message DCProto_FilterRecharge {
+	enum ID {
+		GROUPID = 1;
+		UNITID = 30;
+	}
+
+	repeated NetProto_Recharge recharge = 1;
+	optional int32 id = 2;
+	optional PlayerInfo info = 3;
+	optional int64 roleID = 4;
+}
+
+message DCProto_SetVIP {
+	enum ID {
+		GROUPID = 1;
+		UNITID = 31;
+	}
+
+	optional NetProto_GMModifyVIP info = 1;
+}
+
+message DCProto_CollectEquipment{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 0;
+	}
+
+	optional int64 cur = 1;
+}
+
+message DCProto_SaveEquipmentData{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 1;
+	}
+
+	repeated EquipmentInfo equipments = 1;
+	repeated int64 owner = 2;
+}
+
+message DCProto_LoadEquipmentData{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 2;
+	}
+
+	repeated int64 id = 1;
+	repeated EquipmentInfo equipment = 2;
+}
+
+message DCProto_DeleteEquipmentData{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 3;
+	}
+
+	repeated int64 id = 1;
+}
+
+message DCProto_QueryEquipment{
+	enum ID{
+		GROUPID = 2;
+		UNITID = 4;
+	}
+
+	optional int64 itemID = 1;
+	optional EquipmentInfo equipment = 2;
+	optional int32 id = 3;
+}
+
+message DCProto_GMOrder{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 0;
+	}
+
+	optional NetProto_GMOrder order = 1;
+}
+
+message DCProto_GMData {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 1;
+	}
+	
+	optional int32 id = 1;
+	optional int64 roleID = 2;
+	optional string name = 3;
+	optional int32 level = 4;
+	optional int32 profession = 5;
+	optional int32 startTime = 6;
+	optional int32 endTime = 7;
+	optional string GM = 8;
+	optional bool flag = 9;
+}
+
+message DCProto_GMSaveData {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 2;
+	}
+	optional DCProto_GMData gmData = 1;	
+	optional bool addOrDel = 2;
+}
+
+message DCProto_GMLoadData {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 3;
+	}
+	repeated DCProto_GMData gmData = 1;	
+}
+
+message DCProto_GMPlayerQuery {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 4;
+	}
+	optional string account = 1;
+	optional PB_PlayerAtt att = 2;
+}
+
+message DCProto_GMChatRecords {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 5;
+	}
+	optional int32 id = 1;
+	optional NetProto_GMChatRecords record = 2;
+}
+
+message DCProto_GMRegistrCount {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 6;
+	}
+	optional int32 id = 1;
+	optional NetProto_GMRegistrCount record = 2;
+}
+
+message DCProto_GMRoleCount {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 7;
+	}
+	optional int32 id = 1;
+	optional NetProto_GMRoleCount record = 2;
+}
+
+message DCProto_GMLevelStatistics {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 8;
+	}
+	optional int32 id = 1;
+	optional NetProto_GMLevelStatistics record = 2;
+}
+
+message DCProto_GMOpenGuide {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 9;
+	}
+	optional NetProto_GMOpenGuide info = 1;
+}
+
+message DCProto_GMInfo {
+	optional int32 key = 1;
+	optional int32 arg1 = 2;
+	optional int32 arg2 = 3;
+	optional int32 arg3 = 4;
+	optional string str1 = 5;
+	optional string str2 = 6;
+	optional string str3 = 7;
+	optional int64 roleID = 8;
+}
+
+message DCProto_LoadAllDataFromGMDataTable{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 10;
+	}
+	repeated DCProto_GMInfo info = 1;
+}
+
+message DCProto_SaveGMDataTable{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 11;
+	}
+	repeated DCProto_GMInfo info = 1;
+	optional int32 op = 2;
+}
+
+message DCProto_GMAddExchange{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 12;
+	}
+	optional NetProto_GMAddExchange info = 1;
+}
+
+message DCProto_GMRekooRole{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 13;
+	}
+	optional NetProto_GMAddRekooRole info = 1;
+	optional string str = 2;
+}
+
+message DCProto_GMAddRekooRMB{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 14;
+	}
+	optional int64 roleID = 1;
+	optional int32 rmb = 2;
+}
+
+message DCProto_LoadRekooRole{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 15;
+	}
+	repeated int64 roleID = 1;
+}
+
+message DCProto_AddCodeCount{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 16;
+	}
+	optional int64 roleID = 1;
+}
+
+message InviteCode {
+	optional int64 roleID = 1;
+	optional string selfCode = 2;
+	optional string otherCode = 3;
+}
+
+message DCProto_LoadInviteCode{
+	enum ID{
+		GROUPID = 3;
+		UNITID = 17;
+	}
+	repeated InviteCode info = 1;
+}
+
+message DCProto_QueryGMAccount {
+	enum ID{
+		GROUPID = 3;
+		UNITID = 18;
+	}
+	optional int32 id = 1;
+	optional NetProto_GMLogin gm = 2;
+}
+
+message DCProto_RegistDeviceServer {
+	enum ID{
+		GROUPID = 4;
+		UNITID = 0;
+	}
+	optional string deviceNum = 1;
+	optional int32 id = 2;
+	optional string idfa = 3;
+	optional bool noLine = 4;
+	optional int32 time = 5;
+}
+
+message DCProto_FactionData {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 0;
+	}
+	optional string factionName = 1;
+	optional string name = 2;
+	optional int32 num = 3;
+	optional int64 exp = 4;
+	optional int32 exp_time = 5;
+	optional int32 item = 6;
+	optional string notice = 7;
+	optional string team = 8;
+	optional string guardian = 9;
+}
+
+message DCProto_FactionLoadData {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 1;
+	}
+	repeated DCProto_FactionData data = 1;
+}
+
+message DCProto_FactionSaveData {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 2;
+	}
+	repeated DCProto_FactionData data = 1;
+}
+
+message DCProto_FactionAddRecord {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 3;
+	}
+	optional DCProto_FactionData data = 1;
+}
+
+message DCProto_FactionDelRecord {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 4;
+	}
+	optional DCProto_FactionData data = 1;
+}
+
+message DCProto_FactionUpdateRecord {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 5;
+	}
+	optional DCProto_FactionData data = 1;
+}
+
+message DCProto_SysFactionMemInfo {
+	enum ID{
+		GROUPID = 5;
+		UNITID = 6;
+	}
+	
+	optional int64 roleID = 1;
+	optional string str = 2;
+}
+
+message DCProto_InitRank {
+	enum ID{
+		GROUPID = 6;
+		UNITID = 0;
+	}
+	optional NetProto_Rank.Type type = 1;
+	repeated RecordInfo rank = 2;
+	optional RecordInfo finalKiller = 3;
+	optional bool flag = 4;
+}
+
+message DCProto_PingPongAward {
+	enum ID{
+		GROUPID = 6;
+		UNITID = 1;
+	}
+
+	optional NetProto_Rank.Type type = 1;
+	optional int64 roleID = 2;
+}
+
+message FactionPower {
+	optional string str = 1;
+	repeated int64 roleID = 2;
+	optional int64 power = 3;
+}
+
+message DCProto_FactionPower {
+	enum ID{
+		GROUPID = 6;
+		UNITID = 2;
+	}
+	repeated FactionPower info = 1;
+}
+
+message DCProto_PingPongQiuBiTe {
+	enum ID{
+		GROUPID = 6;
+		UNITID = 3;
+	}
+
+	optional NetProto_Rank.Type type = 1;
+	optional int64 roleID = 2;
+}
+
+message DCProto_SerializeToString {
+	enum ID{
+		GROUPID = 6;
+		UNITID = 4;
+	}
+
+	optional NetProto_OneReservation reservation = 1;
+	repeated int64 setRole1 = 2;
+	repeated int64 setRole2 = 3;
+}
+
+message DCProto_PKAward {
+	enum ID{
+		GROUPID = 6;
+		UNITID = 5;
+	}
+
+	optional int64 roleID = 1;
+	optional int32 range = 2;
+}
+
+message DCProto_WeekPKAward {
+	enum ID{
+		GROUPID = 6;
+		UNITID = 6;
+	}
+
+	optional int64 roleID = 1;
+	optional int32 range = 2;
+}

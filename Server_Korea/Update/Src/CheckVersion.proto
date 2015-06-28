@@ -1,0 +1,4 @@
+message VersionForCheck{
+	optional int64 version = 1;
+	optional string md5 = 2;
+}

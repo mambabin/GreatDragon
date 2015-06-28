@@ -1,0 +1,38 @@
+import "ItemBaseInfo.proto";
+
+message BusinessUnit{
+	enum LimitType{
+		NONE = 0;
+		ROLE_DAY = 1;
+		ROLE_CAREER = 2;
+		SERVER_DAY = 3;
+	}
+	optional PB_ItemInfo.Type type = 1;
+	optional int32 id = 2;
+	optional int32 count = 3;
+	optional int32 effect = 4;
+	optional int32 begin = 5;
+	optional int32 end = 6;
+	optional LimitType limitType = 7;
+	optional int32 arg = 8;
+}
+
+message BusinessInfo{
+	enum CurrencyType{
+		NONE = 0;
+		RMB = 1;
+		SUB_RMB = 2;
+		MONEY = 3;
+		LOVE_POINT = 4;
+		PVP_SCORE = 5;
+		GOD_SCORE = 6;
+		FACTION_CONTRIBUTE = 7;
+	}
+	optional int32 id = 1;
+	optional CurrencyType currencyType = 2;
+	repeated BusinessUnit items = 3;
+}
+
+message AllBusiness{
+	repeated BusinessInfo business = 1;
+}

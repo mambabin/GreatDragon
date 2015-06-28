@@ -1,0 +1,133 @@
+import "EquipmentInfo.proto";
+
+message SkillInfo
+{
+	// 技能动画名
+	// "Prepare"
+	// "Move"
+	// "Hit"
+
+	enum SkillType
+	{
+		STATUS = 0;
+	}
+
+	enum TrackType
+	{
+		HORLINE = 0;
+		VERLINE = 1;
+	}
+
+	enum LaunchType
+	{
+		SINGLELINE = 0; // 单个
+		MULLINE = 1; // 一排
+		SECTORLINE = 2; // 伞形（暂未实现）
+		CONTINUOUSLINE = 3; // 连续
+		FALLDOWN = 4; // 落下
+		MELEE = 5; // 近战
+		JUMP = 6; // 链式，对应AreaType = LIST
+		AROUNDSELF = 7; // 自身范围
+		GOSTRAIGHT = 8; // 向前冲刺
+		LEAP = 9; // 跳跃
+		ROTATION = 10; // 旋转
+		BACKSTAB = 11; // 背刺
+		SEPARATION = 12; // 分身
+		BLINK = 13; // 闪现
+	}
+
+	enum TargetType
+	{
+		NOTARGET = 0;
+		SELF = 1;
+		FRIEND = 2;
+		ENEMY = 4;
+	}
+
+	enum StatusType
+	{
+		BEGIN = 0;
+		MOVE = 1;
+		HIT = 2;
+		IDLE = 3;
+	}
+
+	enum AreaType{
+		ONE = 0; // 一个
+		SQUARE = 1; // 正方形区域
+		LIST = 2; // 链式
+	}
+
+	enum ShockType{
+		NONE = 0;
+		PREPARE_OVER = 1;
+		ON_HIT = 2;
+		MOVETIME_OVER = 3;
+	}
+
+	enum OffsetType{
+		NO_OFFSET = 0;
+		FRONT = 1;
+	}
+
+	optional int32 id = 1;
+	optional string name = 2;
+	optional string desc = 3;
+	optional SkillType skillType = 4;
+	optional int32 cd = 5;
+	optional int32 prepareTime = 6; // 技能的准备时间，从开始到真正发射这一阶段
+	optional int32 hp = 7; // 消耗HP
+	optional int32 mp = 8; // 消耗MP
+	optional int64 gold = 9; // 学习所需金钱
+	optional int32 energy = 10; // 使用后所增加的能量值
+	optional int32 dist = 11; // 技能的选择范围，超过此范围则无法发射
+	optional int32 targetType = 12; // 见TargetType，可组合
+	optional int32 speed = 13; // 如果trackType是HORLINE，则代表技能的飞行速度，单位米/秒
+	optional int32 moveTime = 14; // 如果trackType是HORLINE，则代表技能的飞行时间；如果trackType是VERLINE，则代表每两次攻击的间隔时间
+	optional TrackType trackType = 15;
+	optional bool canPenetrate = 16; // 如果trackType是HORLINE，则代表技能是否能穿透目标
+	optional int32 radius = 17; // 如果areaType是SQUARE，则代表正方形区域的半径；如果areaType是LIST,则代表选择下一节点的范围，单位格子
+	repeated int32 dStatusID = 18; // 对敌方造成的状态
+	optional int32 fStatusID = 19; // 对友方造成的状态
+	optional int32 aStatusID = 20; // 对自己造成的状态
+	optional int32 unitCount = 21; // 如果trackType是HORLINE，则代表技能数量；如果trackType是VERLINE，则代表攻击数量
+	optional string fireAction = 22; // 技能使用者的动画名
+	optional LaunchType launchType = 23;
+	optional int32 hitTime = 24; // 技能命中后的动画时间
+	optional AreaType areaType = 25;
+	optional int32 prepareAction = 26; // 技能的准备动画ID
+	optional int32 moveAction = 27; // 技能的飞行动画ID
+	optional int32 hitAction = 28; // 技能的命中动画ID
+	optional int32 maxHit = 29; // 最大命中次数
+	optional int32 next = 30; // 连击中的下一个
+	optional int32 interval = 31; // 连击的最大间隔时间
+	optional int32 level = 32;
+	optional int32 moveActionTime = 33; // 如果trackType是VERLINE，表示MOVE动画持续时间
+	optional int32 prepareActionTime = 34; // 如果trackType是VERLINE，表示BEGIN动画持续时间
+	optional int32 picture = 35;
+	optional int32 requireLevel = 36;
+	optional bool isBeginFollowed = 37;
+	optional bool isHitFollowed = 38;
+	optional bool raiseHit = 39;
+	optional int32 fireActionTime = 40;
+	optional int32 beginAudio = 41;
+	optional int32 hitAudio = 42;
+	optional bool isMoveFollowed = 43;
+	optional ShockType shockType = 44;
+	optional int32 hitNums = 45;
+	optional OffsetType aOffsetType = 46;
+	optional OffsetType dOffsetType = 47;
+	optional int32 offsetTime = 48;
+	optional float offsetDist = 49;
+	optional int32 offsetDelay = 50;
+	optional int32 goods = 51;
+	optional int32 count = 52;
+}
+
+message SkillFamily{
+	repeated SkillInfo skills = 1;
+}
+
+message AllSkills{
+	repeated SkillFamily skills = 1;
+}

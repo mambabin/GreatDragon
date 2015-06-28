@@ -1,0 +1,34 @@
+message ItemInfo{
+	enum Type{
+		NONE = 0;
+		GOODS = 1;
+		EQUIPMENT = 2;
+		MONEY = 3;
+		SKILL = 4;
+		FASHION = 5;
+		DESIGNATION = 6;
+		RMB = 7;
+		SOULJADE = 8;
+		SOUL = 9;
+		SOULSTONE = 10;
+		EXP = 11;
+		HONOR = 12;
+		DURABILITY = 13;
+		SUBRMB = 14;
+		WING = 15;
+		RUNE = 16;
+		GODSCORE = 17;
+		TRANSFORM = 18;
+		HP = 19;
+		PET = 20;
+		VIP = 21;
+		RIDES = 22;
+		GODSHIP = 23;
+		RIDES_FOOD = 24;
+	}
+
+	optional Type type = 1;
+	optional int64 id = 2;
+	optional int32 count = 3;
+}
+

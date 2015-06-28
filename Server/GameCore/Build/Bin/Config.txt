@@ -1,0 +1,72 @@
+#dataPath = ./Data
+dataPath = /home/ghl/Project-1/Server/GameCore/Build/Bin/Data
+netAgentPort = 20001
+
+version = 201503182049
+line = 11
+# platforms = ylx,rekoo,uc,appstore
+
+openTime = 1426122000
+
+dbHost = 192.168.11.22
+# dbHost = 118.244.213.6
+dbPort = 3306
+# db = Project_1
+db = add
+dbUser = root
+dbPassword = bjylx2013
+
+# dbPublicHost = 101.251.102.122
+dbPublicHost = 192.168.11.22
+# dbPublicPort = 3307
+dbPublicPort = 3306
+dbPublic = ts_public
+dbPublicUser = ylx
+dbPublicPassword = bjylx2013
+
+# dbRechargeHost = 192.168.11.22
+dbRechargeHost = 101.251.102.122
+# dbRechargePort = 3306
+dbRechargePort = 3307
+dbRecharge = ts_recharge
+# dbRechargeUser = root
+# dbRechargePassword = bjylx2013
+dbRechargeUser = admin
+dbRechargePassword = asjquxza1A
+
+rechargeTable = recharge
+accountTable = Account
+roleTable = Role
+equipTable = Equip
+singleTable = Single
+giftTable = Gift
+costRecordTable = CostRecord
+chatTable = Chat
+gmTable = GM
+gmDataTable = GMData
+deviceTable = RK
+factionTable = Factions
+rekooRoleTable = RekooRole
+
+# scribeHost = 118.244.213.6
+# scribeHost = 127.0.0.1
+scribePort = 8250
+#scribeCategory = TIANSHA_YUEYU
+# scribeCategory = TIANSHA_APPSTORE
+scribeCategory = ANDROID
+
+# snapshotDir = /var/www/snapshot
+#snapshotDir = /tmp/snapshot
+
+# push = ~/Push/PushMsg
+
+logInfo = 1
+logError = 1
+logRecord = 1
+
+gmAccount = ylx,cys
+gmPasswd = bjylx,cys
+
+maxPlayers = 100000
+maxMaps = 4096
+queuePlayers = 2000

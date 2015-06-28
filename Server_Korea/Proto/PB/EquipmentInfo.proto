@@ -1,0 +1,149 @@
+import "FightInfo.proto";
+import "ItemBaseInfo.proto";
+import "GodShip.proto";
+
+message EquipmentInfo{
+
+	enum Type{
+		HEAD = 0;
+		CHEST = 1;
+		SHOULDER = 2;
+		BOOTS = 3;
+		HAND = 4;
+		WEAPON = 5;
+		NECKLACE = 6;
+		RING = 7;
+		BELT = 8;
+		TROUSERS = 9;
+		JEWELRY = 10;
+		BRACELET = 11;
+	}
+
+	enum ColorType{
+		WHITE = 0;
+		GREEN = 1;
+		BLUE = 2;
+		YELLOW = 3;
+		RED = 4;
+	}
+
+	optional int64 id = 1;
+	optional Type type = 2;
+	optional string name = 3;
+	optional int32 model = 4;
+	optional int32 picture = 5;
+	optional string desc = 6;
+	optional int32 professionType = 7;
+	optional int32 requiredLevel = 8;
+	optional int32 equipmentLevel = 9;
+	optional bool isSell = 10;
+	optional int64 price = 11;
+	optional ColorType colorType = 12;
+	repeated PB_FightAtt.PropertyType baseType = 13;
+	repeated int32 baseDelta = 14;
+	optional int64 rmb = 21;
+	optional int32 effect1 = 22;
+	optional int32 effect2 = 23;
+	optional int32 stampCount = 24;
+	repeated PB_FightAtt.PropertyType enhanceType = 25;
+	repeated int32 enhanceLimit = 27;
+	optional int32 lovePoint = 28;
+	optional int32 pvpScore = 29;
+	optional int32 godScore = 30;
+	optional int32 factionContribute = 31;
+	repeated PB_ItemInfo decomposeItems = 32;
+	optional int32 helpNode = 33;
+	optional int32 randomEffect = 34;
+}
+
+message AllEquipments{
+	repeated EquipmentInfo equipments = 1;
+}
+
+message PB_EquipAsset{
+	optional int32 mode = 1 [default = -1];
+	optional int32 strongLevel = 2;
+	repeated int32 gemModel = 3;
+	repeated int32 gemType = 4;
+	repeated int32 enhanceDelta = 5;
+	repeated int32 randomType = 6;
+	repeated int32 randomDelta = 7;
+	optional int32 effectId = 8;
+}
+
+message EquipRecipe{
+	optional int32 id = 1;
+	optional EquipmentInfo.Type type = 2;
+	repeated int32 materials = 3;
+	repeated int32 nums = 4;
+	repeated int32 equipments = 5;
+}
+
+message AllEquipRecipes{
+	repeated EquipRecipe recipes = 1;
+}
+
+message BaseWing{
+	enum ColorType{
+		WHITE = 0;
+		GREEN = 1;
+		BLUE = 2;
+		YELLOW = 3;
+		RED = 4;
+	}
+
+	optional int32 level = 1;
+	optional string name = 2;
+	repeated int32 model = 3;
+	repeated int32 effect = 4;
+	optional string desc = 5;
+	optional int32 degree = 6;
+	repeated int32 att = 7;
+	repeated int32 goods = 8;
+	repeated int32 count = 9;
+	optional int32 pic = 10;
+	optional ColorType colorType = 11;
+	optional float success = 12;
+}
+
+message AllBaseWings{
+	repeated BaseWing wings = 1;
+}
+
+message Wing{
+	enum ColorType{
+		WHITE = 0;
+		GREEN = 1;
+		BLUE = 2;
+		YELLOW = 3;
+		RED = 4;
+	}
+
+	optional int32 id = 1;
+	repeated int32 model = 2;
+	repeated int32 effect = 3;
+	repeated int32 att = 4;
+	optional string desc = 5;
+	optional int32 pic = 6;
+	optional int32 rmb = 7;
+	optional ColorType colorType = 8;
+	optional string name = 9;
+	optional int32 pvpScore = 10;
+	optional int32 lovePoint = 11;
+	optional int32 godScore = 12;
+	optional int32 factionContribute = 13;
+	optional int32 helpNode = 14;
+}
+
+message AllWings{
+	repeated Wing wings = 1;
+}
+
+message PB_EquipmentAtt{
+	repeated int64 equipments = 1;
+	optional int32 wing = 3 [default = -1];
+	optional int32 fashion = 4 [default = -1];
+	optional bool baseWing = 5;
+	optional int32 rides = 6 [default = -1];
+	repeated int32 godShips = 7;
+}

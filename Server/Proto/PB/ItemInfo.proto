@@ -1,0 +1,156 @@
+import "Math.proto";
+import "Fashion.proto";
+import "EquipmentInfo.proto";
+import "ItemBaseInfo.proto";
+import "BoxInfo.proto";
+import "GodShip.proto";
+import "RidesInfo.proto";
+
+message GoodsInfo {
+	enum Type {
+		EXP = 0;
+		MATERIAL = 1;
+		GEM = 2;
+		MONEY = 3;
+		MISSION = 4;
+		BOX = 5;
+		RMB = 6;
+		SOUL = 7;
+		SOULJADE = 8;
+		SOULSTONE = 9;
+		SUBRMB = 10;
+		RECIPE_EQU = 11;
+		RUNE = 12;
+		EGG = 13;
+		SKILLBOOK = 14;
+		LOCK_BOX = 15;
+		KEY = 16;
+		VIP = 17;
+		UNLOCK_PACKAGE = 18;
+		MONTH_CARD = 19;
+		RIDES_FRAGMENT = 20;
+	}
+
+	enum ColorType{
+		WHITE = 0;
+		GREEN = 1;
+		BLUE = 2;
+		YELLOW = 3;
+		RED = 4;
+	}
+
+	optional int64 id = 1;
+	optional string name = 2;
+	optional int32 picture = 3;
+	optional int32 price = 4;
+	optional int32 rmb = 5;
+	optional Type type = 6;
+	optional int32 repeat = 7;
+	repeated int32 arg = 8;
+	optional string desc = 9;
+	optional int32 requiredLevel = 10;
+	optional ColorType colorType = 11;
+	optional int32 stampCount = 12;
+	optional bool bind = 13;
+	optional int32 lovePoint = 14;
+	optional int32 pvpScore = 15;
+	optional int32 godScore = 16;
+	optional int32 factionContribute = 17;
+	optional int32 helpNode = 18;
+	optional int32 useRMB = 19;
+}
+
+message AllGoods{
+	repeated GoodsInfo goods = 1;
+}
+
+message PB_TransformAsset {
+	optional int32 id = 1 [default = -1];
+	optional int32 quality = 2;
+	optional int32 level = 3;
+}
+
+
+message PB_ItemPackage{
+	enum Begin{
+		EQUIPMENT = 0;
+		GOODS = 105;
+		GEM = 210;
+	}
+	enum Length{
+		LENGTH = 105;
+	}
+
+	repeated PB_ItemInfo items = 1;
+	optional int64 money = 2;
+	optional int64 rmb = 3;
+	optional int32 validNumEquipment = 4;
+	optional int32 validNumGoods = 5;
+	optional int32 validNumGem = 6;
+	optional int64 soul = 7;
+	optional int64 smallSoul = 8;
+	optional int64 mediumSoul = 9;
+	optional int64 bigSoul = 10;
+	optional int64 perfectSoul = 11;
+	optional int32 honor = 12;
+	optional int32 durability = 13;
+	optional int64 totalRMB = 14;
+	optional int64 soulStone = 15;
+	optional int64 pkScore = 16;
+	optional int32 vip = 17;
+	optional int32 godScore = 18;
+	optional int64 subRMB = 20;
+	repeated int32 wings = 21;
+	repeated PB_FashionAsset fashions = 23;
+	optional int32 lovePoint = 24;
+	repeated PB_EquipAsset equips = 25;
+	optional int64 pkScoreActive = 26;
+	optional int32 rmbActive = 27;
+	optional int64 totalCost = 28;
+	optional int32 blessActive = 29;
+	repeated PB_TransformAsset transforms = 30;
+	optional int32 activeCost = 31;
+	optional int32 activeCostEndTime = 32;
+	repeated PB_RidesAsset rides = 33;
+	repeated PB_GodShipAsset godShips = 34;
+	repeated int32 godShipsPackage = 35;
+	optional int64 ridesFood = 36;
+}
+
+message PB_ALT{
+	enum Pos{
+		BEGIN = 0;
+		END = 8;
+	}
+
+	repeated PB_ItemInfo alt = 1;
+}
+
+message DropItem{
+	optional PB_ItemInfo.Type type = 1;
+	optional int32 id = 2;
+	optional int32 rate = 3;
+}
+
+message DropTable{
+	optional int32 id = 1;
+	repeated DropItem dropItems = 2;
+	optional int32 min = 3;
+	optional int32 max = 4;
+}
+
+message AllDropTables{
+	repeated DropTable dropTables = 1;
+}
+
+message ExchangeTable {
+	optional int32 sourceGoods = 1;
+	optional int32 sourceCount = 2;
+	optional BoxInfo.Type targetType = 3;
+	optional int32 arg1 = 4;
+	optional int32 arg2 = 5;
+}
+
+message AllExchangeTable {
+	repeated ExchangeTable exchangeTable = 1;
+}

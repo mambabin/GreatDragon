@@ -1,0 +1,6 @@
+message GodShipAsset{
+	optional int32 id = 1 [default = -1];
+	optional int32 exp = 2;
+	optional int32 quality = 3;
+	optional int32 level = 4;
+}

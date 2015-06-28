@@ -1,0 +1,14 @@
+# 端口
+port = 9090
+
+# 资源根目录
+#Res = ../Res
+Res = /var/www/ios
+
+# 版本文件
+#VersionInfo = ../Res/VersionInfo.bytes
+VersionInfo = /var/www/ios/VersionInfo.bytes
+
+# 版本检查文件
+#CheckVersion = ../Res/CheckVersion.bytes
+CheckVersion = /var/www/ios/CheckVersion.bytes

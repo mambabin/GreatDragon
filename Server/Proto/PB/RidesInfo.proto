@@ -1,0 +1,50 @@
+
+message RidesInfo
+{
+	enum Quality
+	{
+		WHITE = 0;
+		GREEN = 1;
+		BLUE = 2;
+		YELLOW = 3;
+		RED = 4;
+	}
+
+	optional int32 id = 1;
+	optional int32 pic = 2;
+	optional string name = 3;
+	optional int32 model = 4;
+	optional int32 level = 5;
+	repeated int32 att = 6;
+	optional Quality quality = 7;
+	optional int32 tpGoods = 8;
+	optional int32 tpCount = 9;
+	optional float tpSuccessRate = 10;
+	optional int32 baseEXP = 11;
+	optional string ride_stand = 12;
+	optional string ride_run = 13;
+	optional int32 fragmentCount = 14;
+	optional int32 tpLevel = 15;
+	optional int32 tpStar = 16;
+}
+
+message RidesGroup
+{
+	repeated RidesInfo rides = 1;
+}
+
+message AllRideses
+{
+	repeated RidesGroup rides = 1;
+}
+
+message PB_RidesAsset
+{
+	optional int32 model = 1 [default = -1];
+	optional int32 star = 2;
+	optional int32 level = 3;
+	optional int64 exp = 4;
+	optional int32 potential = 5;
+	repeated int32 att = 6;
+	repeated bool lockAtt = 7;
+}

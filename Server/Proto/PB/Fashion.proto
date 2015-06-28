@@ -1,0 +1,35 @@
+message FashionInfo{
+	enum ColorType{
+		WHITE = 0;
+		GREEN = 1;
+		BLUE = 2;
+		YELLOW = 3;
+		RED = 4;
+	}
+
+	optional int32 id = 1;
+	optional string name = 2;
+	optional int32 model = 3;
+	optional int32 picture = 4;
+	optional string desc = 5;
+	optional int32 professionType = 6;
+	optional int32 rmb = 7;
+	optional ColorType colorType = 8;
+	repeated int32 att = 9;
+	optional int32 effect1 = 10;
+	optional int32 effect2 = 11;
+	optional int32 godScore = 12;
+	optional int32 lovePoint = 13;
+	optional int32 pvpScore = 14;
+	optional int32 factionContribute = 15;
+	optional int32 helpNode = 16;
+}
+
+message PB_FashionAsset{
+	optional int32 v = 1;
+	repeated int32 runes = 2;
+}
+
+message AllFashions{
+	repeated FashionInfo fashions = 1;
+}

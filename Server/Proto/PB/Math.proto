@@ -1,0 +1,17 @@
+message PB_Vector2i{
+	optional int32 x = 1;
+	optional int32 y = 2;
+}
+
+message PB_Vector3f{
+    optional float x = 1;
+    optional float y = 2;
+    optional float z = 3;
+}
+
+message PB_Vector4f{
+    optional float x = 1;
+    optional float y = 2;
+    optional float z = 3;
+    optional float w = 4;
+}

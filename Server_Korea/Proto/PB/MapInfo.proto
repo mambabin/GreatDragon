@@ -1,0 +1,163 @@
+import "Math.proto";
+import "BoxInfo.proto";
+
+message NPCSceneUnit{
+	optional int32 id = 1;
+	optional PB_Vector2i coord = 2;
+	optional int32 resID = 3;
+	optional PB_Vector3f rotation = 4;
+}
+
+message JumpPointInfo{
+	optional int32 id = 1;
+	optional PB_Vector2i enterCoord = 2;
+	optional int32 nextMap = 3;
+	optional int32 nextPoint = 4;
+	optional PB_Vector2i coord = 5;
+}
+
+message JumpTableInfo{
+	repeated JumpPointInfo table = 1;
+}
+
+message AudioItemInfo{
+	optional string audioID = 1;
+	optional float volume = 2;
+	optional float maxDistance = 3;
+	optional int32 number = 4;
+	optional int32 minInterval = 5;
+	optional int32 delay = 6;
+	optional PB_Vector3f position = 7;
+	optional int32 maxInterval = 8;
+}
+
+message NPCPass{
+	repeated int32 npcs = 1;
+	optional int32 delay = 2;
+}
+
+message NPCGroup{
+	repeated NPCPass pass = 1;
+}
+
+message PathNode{
+	enum Type{
+		PATH = 0;
+		NPC = 1;
+		DOOR = 2;
+	}
+
+	optional int32 id = 1;
+	optional Type type = 2;
+	repeated int32 next = 3;
+	optional PB_Vector3f pos = 4;
+}
+
+message ObstacleTriggerInfo{
+	enum OpenType{
+		NONE = 0;
+		KILL_GROUP_NPC = 1;
+		SHOW_UI_PROGRESS = 2;
+	}
+	optional int32 openType = 1;
+	repeated int32 param = 2;
+	optional int32 id = 3;
+}
+
+message MapUnit{
+	enum SceneType{
+		LAND = 0;
+		OCEAN = 1;
+	}
+
+	optional int32 id = 1;
+	repeated NPCSceneUnit npcs = 2;
+	optional JumpTableInfo jumpTable = 3;
+	repeated AudioItemInfo audioItems = 4;
+	optional int32 resID = 5;
+	repeated NPCGroup npcGroups = 6;
+	optional int32 boss = 7 [default = -1];
+	optional SceneType sceneType = 8;
+	repeated PathNode path = 9;
+	optional int32 protectNPC = 10 [default = -1];
+	optional int32 targetNode = 11 [default = -1];
+	repeated ObstacleTriggerInfo obstacleTriggerInfo = 12;
+	repeated int32 friendlyNpc = 13;
+	repeated PB_Vector3f freeCoords = 14;
+	optional int32 enemyTargetNode = 15;
+	repeated int32 heroNPC = 16;
+	repeated int32 ourRecoverHPNode = 17;
+	repeated int32 enemyRecoverHPNode = 18;
+}
+
+message MapInfo{
+
+	enum MapType{
+		PEACE = 0;
+		SINGLE = 1;
+		ROOM = 2;
+		PVP = 3;
+		ONLY_ROOM = 4;
+		PRACTICE = 5;
+		HELL = 6;
+		BATTLE_SINGLE = 7;
+	}
+
+	enum AwardType{
+		FINAL = 0;
+		PASS = 1;
+	}
+
+	enum OpenNPCType {
+		NORMAL = 0;
+		TRIGGER = 1;
+	}
+
+	optional MapType mapType = 1;
+	optional int32 id = 2;
+	optional string name = 3;
+	optional string desc = 4;
+	optional int32 requireMission = 5;
+	repeated int32 sceneAudio = 6;
+	optional int32 freeBox = 7;
+	optional int32 gemBox = 8;
+	optional int32 exp = 9;
+	optional int32 honor = 10;
+	optional int32 requiredPower = 11;
+	optional int32 durability = 12;
+	optional AwardType awardType = 13;
+	optional int32 money = 14;
+	optional int32 rmb = 15;
+	optional int32 soul = 16;
+	optional int32 showBox = 17;
+	optional int32 smallSoulJade = 18;
+	optional int32 soulStone = 19;
+	optional int32 parent = 20;
+	optional int32 child = 21;
+	optional int32 sweepMoney = 22;
+	optional bool elite = 23;
+	optional int32 requiredLevel = 24;
+	optional OpenNPCType openNpcType = 25;
+	optional int32 minTime = 26;
+	optional int32 maxTime = 27;
+}
+
+message AllMapInfo{
+	repeated MapInfo mapInfo = 1;
+}
+
+message BlockInfo{
+	enum BlockType{
+		DEFAULT = 0;
+		UNWALKABLE = 1;
+		UNWALKABLE_UNSKILL = 2;
+	}
+
+	optional int32 id = 1;
+	repeated BlockType blockTypes = 2;
+	optional int32 realLength = 3;
+	optional int32 realWidth = 4;
+	optional int32 logicLength = 5;
+	optional int32 logicWidth = 6;
+	repeated int32 obstacles = 7;
+}

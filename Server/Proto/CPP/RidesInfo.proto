@@ -1,0 +1,21 @@
+
+message RidesAsset
+{
+	enum AttSizeType
+	{
+		ATT_SIZE = 6;
+	}
+
+	enum LockAttSizeType
+	{
+		LOCKATT_SIZE = 6;
+	}
+
+	optional int32 model = 1 [default = -1];
+	optional int32 star = 2;
+	optional int32 level = 3;
+	optional int64 exp = 4;
+	optional int32 potential = 5;
+	repeated int32 att = 6;
+	repeated bool lockAtt = 7;
+}

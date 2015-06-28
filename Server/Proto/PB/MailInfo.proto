@@ -1,0 +1,12 @@
+import "ItemBaseInfo.proto";
+
+message PB_MailInfo{
+	optional string sender = 1;
+	optional int64 time = 2;
+	optional string title = 3;
+	optional string content = 4;
+	optional PB_ItemInfo item = 5;
+	optional bool read = 6;
+	optional int64 rmb = 7;
+	optional bool isRmb = 8;
+}
